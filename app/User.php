@@ -93,4 +93,11 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserProfile::class);
     }
+
+    public static function getOptions()
+    {
+        $options = [null => ' - 請下拉選擇 - '] + User::pluck('name', 'id')->toArray();
+
+        return $options;
+    }
 }

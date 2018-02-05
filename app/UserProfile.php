@@ -64,4 +64,12 @@ class UserProfile extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public static function getTypeOptions()
+    {
+        $types = ['教授', '碩士班', '博士班', '碩專班', '其他'];
+        $options = [null => ' - 請下拉選擇 - '] + array_combine($types, $types);
+
+        return $options;
+    }
 }

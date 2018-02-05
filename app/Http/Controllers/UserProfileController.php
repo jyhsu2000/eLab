@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\UserProfileDataTable;
+use App\Http\Requests\UserProfileRequest;
 use App\UserProfile;
-use Illuminate\Http\Request;
 
 class UserProfileController extends Controller
 {
@@ -26,62 +26,69 @@ class UserProfileController extends Controller
      */
     public function create()
     {
-        //TODO
+        return view('user-profile.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param UserProfileRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserProfileRequest $request)
     {
-        //TODO
+        $userProfile = UserProfile::create($request->all());
+
+        return redirect()->route('user-profile.show', $userProfile)->with('success', '成員已建立');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\UserProfile  $userProfile
+     * @param  \App\UserProfile $userProfile
      * @return \Illuminate\Http\Response
      */
     public function show(UserProfile $userProfile)
     {
-        //TODO
+        return view('user-profile.show', compact('userProfile'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\UserProfile  $userProfile
+     * @param  \App\UserProfile $userProfile
      * @return \Illuminate\Http\Response
      */
     public function edit(UserProfile $userProfile)
     {
-        //TODO
+        return view('user-profile.edit', compact('userProfile'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\UserProfile  $userProfile
+     * @param UserProfileRequest $request
+     * @param  \App\UserProfile $userProfile
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserProfile $userProfile)
+    public function update(UserProfileRequest $request, UserProfile $userProfile)
     {
-        //TODO
+        $userProfile->update($request->all());
+
+        return redirect()->route('user-profile.show', $userProfile)->with('success', '成員已更新');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\UserProfile  $userProfile
+     * @param  \App\UserProfile $userProfile
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(UserProfile $userProfile)
     {
-        //TODO
+        $userProfile->delete();
+
+        return redirect()->route('user-profile.index')->with('success', '成員已刪除');
     }
 }
