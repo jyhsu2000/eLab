@@ -11,8 +11,8 @@ class LaravelMenu
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -33,6 +33,7 @@ class LaravelMenu
                     $menu->add('尚未完成信箱驗證', ['route' => 'confirm-mail.resend'])
                         ->link->attr(['class' => 'text-danger']);
                 }
+                $menu->add('通訊錄', ['route' => 'user-profile.index'])->active('user-profile/*');
                 //管理員
                 if (Laratrust::can('menu.view') and auth()->user()->isConfirmed) {
                     /** @var \Lavary\Menu\Builder $adminMenu */

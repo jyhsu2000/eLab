@@ -41,6 +41,8 @@ Route::group(['middleware' => ['auth', 'email']], function () {
         Route::get('edit', 'ProfileController@getEditProfile')->name('profile.edit');
         Route::put('update', 'ProfileController@updateProfile')->name('profile.update');
     });
+    // TODO: 權限：管理權限、限實驗室成員進入
+    Route::resource('user-profile', 'UserProfileController');
 });
 
 //會員系統

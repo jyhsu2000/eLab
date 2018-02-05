@@ -26,6 +26,7 @@ use Laratrust\Traits\LaratrustUserTrait;
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Permission[] $permissions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Role[] $roles
+ * @property-read \App\UserProfile $userProfile
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereConfirmAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereConfirmCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereCreatedAt($value)
@@ -86,5 +87,10 @@ class User extends Authenticatable
     public function getIsConfirmedAttribute()
     {
         return !empty($this->confirm_at);
+    }
+
+    public function userProfile()
+    {
+        return $this->hasOne(UserProfile::class);
     }
 }

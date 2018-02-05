@@ -185,6 +185,7 @@
                 }
             }
         });
+        DataTable.ext.errMode = 'throw';
     })(jQuery, jQuery.fn.dataTable);
 </script>
 @yield('js')
