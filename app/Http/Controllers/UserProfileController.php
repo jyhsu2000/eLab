@@ -55,6 +55,12 @@ class UserProfileController extends Controller
     public function store(UserProfileRequest $request)
     {
         $userProfile = UserProfile::create($request->all());
+        //清除其他屬於該User的UserProfile的user_id，確保一對一
+        $userId = $request->get('user_id');
+        if ($userId) {
+            UserProfile::where('id', '<>', $userProfile->id)->whereUserId($userId)->update(['user_id' => null]);
+        }
+
         //新相片
         $photoFile = $request->file('photo');
         if ($photoFile) {
@@ -103,6 +109,11 @@ class UserProfileController extends Controller
     public function update(UserProfileRequest $request, UserProfile $userProfile)
     {
         $userProfile->update($request->all());
+        //清除其他屬於該User的UserProfile的user_id，確保一對一
+        $userId = $request->get('user_id');
+        if ($userId) {
+            UserProfile::where('id', '<>', $userProfile->id)->whereUserId($userId)->update(['user_id' => null]);
+        }
         //新相片
         $photoFile = $request->file('photo');
         if ($photoFile) {
