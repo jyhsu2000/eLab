@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
+use App\Observers\UserProfileObserver;
+use App\UserProfile;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
+use Monolog\Handler\MissingExtensionException;
 use Monolog\Handler\SlackHandler;
 use Monolog\Logger;
 use Schema;
@@ -14,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      *
      * @return void
+     * @throws \Monolog\Handler\MissingExtensionException
      */
     public function boot()
     {
@@ -38,6 +42,9 @@ class AppServiceProvider extends ServiceProvider
             );
             $monolog->pushHandler($slackHandler);
         }
+
+        //Observer
+        UserProfile::observe(UserProfileObserver::class);
     }
 
     /**

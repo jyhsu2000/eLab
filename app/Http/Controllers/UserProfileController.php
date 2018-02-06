@@ -65,7 +65,6 @@ class UserProfileController extends Controller
         //新相片
         $photoFile = $request->file('photo');
         if ($photoFile) {
-            //新照片
             $this->attachUploadedPhoto($userProfile, $photoFile);
         }
 
@@ -116,13 +115,16 @@ class UserProfileController extends Controller
         }
         //新相片
         $photoFile = $request->file('photo');
-        if ($photoFile) {
-            //移除舊相片
+        //移除舊相片
+        if ($photoFile || $request->exists('delete_photo')) {
             $oldPhoto = $userProfile->attachment('photo');
             if ($oldPhoto) {
                 $oldPhoto->delete();
+                $userProfile->touch();
             }
-            //新照片
+        }
+        //新照片
+        if ($photoFile) {
             $this->attachUploadedPhoto($userProfile, $photoFile);
         }
 

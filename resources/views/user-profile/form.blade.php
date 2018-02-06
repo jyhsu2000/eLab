@@ -6,6 +6,7 @@
             @if($userProfile->photoUrl)
                 <img src="{{ $userProfile->photoUrl }}" class="img-thumbnail"
                      style="max-height: 200px; max-width: 200px"/>
+                {{ bs()->checkBox('delete_photo', '刪除相片') }}
             @else
                 無
             @endif
