@@ -84,11 +84,18 @@ class UserProfile extends Model
      */
     public function getPhotoUrlAttribute()
     {
-        $attachment = $this->attachment('photo');
-        if (!$attachment) {
-            return null;
-        }
+        //自動緩存一天
+        $cacheKey = 'user_profile_' . $this->id . '_photo_' . $this->updated_at->timestamp;
+        $photoUrl = \Cache::remember($cacheKey, 1440, function () {
+            $attachment = $this->attachment('photo');
+            if (!$attachment) {
+                //cache不支援null，存false代替
+                return false;
+            }
 
-        return $attachment->url . '?disposition=inline';
+            return $attachment->url . '?disposition=inline';
+        });
+
+        return $photoUrl;
     }
 }

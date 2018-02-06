@@ -111,9 +111,12 @@ class UserProfileController extends Controller
             if ($oldPhoto) {
                 $oldPhoto->delete();
             }
+            //新相片
             $userProfile->attach($photoFile, [
                 'key' => 'photo',
             ]);
+            //更新updated_at，避免photo吃到緩存
+            $userProfile->touch();
         }
 
         return redirect()->route('user-profile.show', $userProfile)->with('success', '成員已更新');
