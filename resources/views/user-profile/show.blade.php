@@ -27,13 +27,25 @@
                 <img src="{{ $userProfile->photoUrl }}" class="img-thumbnail"
                      style="max-height: 600px; max-width: 600px"/>
             @else
-                <div class="img-thumbnail d-inline-flex justify-content-center" style="height: 600px; width: 600px; background-image: repeating-linear-gradient(-45deg, #dddddd 0px, #dddddd 25px, transparent 25px, transparent 50px, #dddddd 50px);">
+                <div class="img-thumbnail d-inline-flex justify-content-center"
+                     style="height: 600px; width: 600px; background-image: repeating-linear-gradient(-45deg, #dddddd 0px, #dddddd 25px, transparent 25px, transparent 50px, #dddddd 50px);">
                     <div class="align-self-center">無相片</div>
                 </div>
             @endif
         </div>
         <div class="card-body">
             <dl class="row" style="font-size: 120%">
+                @if(Laratrust::can('user.view') || Laratrust::can('user.manage'))
+                    <dt class="col-4 col-md-3">會員</dt>
+                    <dd class="col-8 col-md-9">
+                        @if($userProfile->user)
+                            {{ link_to_route('user.show', $userProfile->user->name, $userProfile->user) }}
+                        @else
+                            <span class="text-muted">未連結</span>
+                        @endif
+                    </dd>
+                @endif
+
                 <dt class="col-4 col-md-3">入學年度</dt>
                 <dd class="col-8 col-md-9">{{ $userProfile->in_year }}</dd>
 

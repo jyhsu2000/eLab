@@ -3,6 +3,8 @@
 namespace App\DataTables;
 
 use App\User;
+use App\UserProfile;
+use Illuminate\Database\Eloquent\Builder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
 
@@ -22,6 +24,15 @@ class UserDataTable extends DataTable
             ->addColumn('action', 'user.datatables.action')
             ->editColumn('name', 'user.datatables.name')
             ->editColumn('email', 'user.datatables.email')
+            ->editColumn('user_profile', 'user.datatables.user_profile')
+            ->filterColumn('user_profile', function ($query, $keyword) {
+                /** @var Builder|User $query */
+                $query->whereHas('userProfile', function ($query) use ($keyword) {
+                    /** @var Builder|UserProfile $query */
+                    $query->where('name', 'like', "%{$keyword}%")
+                        ->orWhere('nickname', 'like', "%{$keyword}%");
+                });
+            })
             ->escapeColumns([]);
     }
 
@@ -33,7 +44,7 @@ class UserDataTable extends DataTable
      */
     public function query(User $model)
     {
-        return $model->newQuery()->with('roles');
+        return $model->newQuery()->with('roles', 'userProfile');
     }
 
     /**
@@ -62,9 +73,13 @@ class UserDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id'    => ['title' => '#'],
-            'name'  => ['title' => '使用者'],
-            'email' => ['title' => '信箱'],
+            'id'           => ['title' => '#'],
+            'name'         => ['title' => '使用者'],
+            'email'        => ['title' => '信箱'],
+            'user_profile' => [
+                'title'     => '成員',
+                'orderable' => false,
+            ],
         ];
     }
 

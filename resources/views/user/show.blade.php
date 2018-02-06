@@ -25,6 +25,18 @@
         </div>
         <div class="card-body">
             <dl class="row" style="font-size: 120%">
+                <dt class="col-4 col-md-3">實驗室成員</dt>
+                <dd class="col-8 col-md-9">
+                    @if($user->userProfile)
+                        {{ link_to_route('user-profile.show', $user->userProfile->name, $user->userProfile) }}
+                        @if($user->userProfile->nickname)
+                            （{{ $user->userProfile->nickname }}）
+                        @endif
+                    @else
+                        <span class="text-muted">未連結</span>
+                    @endif
+                </dd>
+
                 <dt class="col-4 col-md-3">名稱</dt>
                 <dd class="col-8 col-md-9">{{ $user->name }}</dd>
 

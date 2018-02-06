@@ -19,7 +19,10 @@ class UserProfileDataTable extends DataTable
         $dataTable = new EloquentDataTable($query);
 
         return $dataTable
-            ->editColumn('name', 'user-profile.datatables.name')
+            ->editColumn('name', function ($userProfile) {
+                /** @var UserProfile $userProfile */
+                return view('user-profile.datatables.name', compact('userProfile'))->render();
+            })
             ->editColumn('email', 'user-profile.datatables.email')
             ->escapeColumns([]);
     }
@@ -32,7 +35,7 @@ class UserProfileDataTable extends DataTable
      */
     public function query(UserProfile $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->with('user');
     }
 
     /**
