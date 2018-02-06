@@ -6,7 +6,6 @@ use App\Observers\UserProfileObserver;
 use App\UserProfile;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
-use Monolog\Handler\MissingExtensionException;
 use Monolog\Handler\SlackHandler;
 use Monolog\Logger;
 use Schema;
