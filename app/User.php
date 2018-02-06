@@ -96,7 +96,7 @@ class User extends Authenticatable
 
     public static function getOptions()
     {
-        $options = [null => ' - 請下拉選擇 - '] + User::pluck('name', 'id')->toArray();
+        $options = [null => ' - 請下拉選擇 - '] + self::pluck('name', 'id')->toArray();
 
         return $options;
     }
