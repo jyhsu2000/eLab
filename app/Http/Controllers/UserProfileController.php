@@ -6,6 +6,7 @@ use App\DataTables\UserProfileDataTable;
 use App\Http\Requests\UserProfileRequest;
 use App\User;
 use App\UserProfile;
+use Illuminate\Http\UploadedFile;
 
 class UserProfileController extends Controller
 {
@@ -64,9 +65,8 @@ class UserProfileController extends Controller
         //新相片
         $photoFile = $request->file('photo');
         if ($photoFile) {
-            $userProfile->attach($photoFile, [
-                'key' => 'photo',
-            ]);
+            //新照片
+            $this->attachUploadedPhoto($userProfile, $photoFile);
         }
 
         return redirect()->route('user-profile.show', $userProfile)->with('success', '成員已建立');
@@ -122,12 +122,8 @@ class UserProfileController extends Controller
             if ($oldPhoto) {
                 $oldPhoto->delete();
             }
-            //新相片
-            $userProfile->attach($photoFile, [
-                'key' => 'photo',
-            ]);
-            //更新updated_at，避免photo吃到緩存
-            $userProfile->touch();
+            //新照片
+            $this->attachUploadedPhoto($userProfile, $photoFile);
         }
 
         return redirect()->route('user-profile.show', $userProfile)->with('success', '成員已更新');
@@ -145,5 +141,32 @@ class UserProfileController extends Controller
         $userProfile->delete();
 
         return redirect()->route('user-profile.index')->with('success', '成員已刪除');
+    }
+
+    /**
+     * @param UserProfile $userProfile
+     * @param UploadedFile $uploadedFile
+     * @throws \Exception
+     */
+    private function attachUploadedPhoto(UserProfile $userProfile, UploadedFile $uploadedFile)
+    {
+        //建立Image
+        $image = \Image::make($uploadedFile->getRealPath());
+        //暫存路徑
+        $tmpPath = sys_get_temp_dir() . '/' . $uploadedFile->getClientOriginalName();
+        //調整圖片大小
+        $image->resize(600, 600, function ($constraint) {
+            /** @var \Intervention\Image\Constraint $constraint */
+            //照比例
+            $constraint->aspectRatio();
+            //防止放大
+            $constraint->upsize();
+        })->save($tmpPath);
+        //附加新相片
+        $userProfile->attach($tmpPath, [
+            'key' => 'photo',
+        ]);
+        //更新updated_at，避免photo吃到緩存
+        $userProfile->touch();
     }
 }
