@@ -9,6 +9,18 @@ use App\UserProfile;
 class UserProfileController extends Controller
 {
     /**
+     * UserProfileController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('permission:user-profile.manage', ['only' => [
+            'create',
+            'store',
+            'destroy',
+        ]]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @param UserProfileDataTable $dataTable
@@ -61,6 +73,10 @@ class UserProfileController extends Controller
      */
     public function edit(UserProfile $userProfile)
     {
+        if (!\Laratrust::owns($userProfile) && !\Laratrust::can('user-profile.manage')) {
+            return redirect()->route('user-profile.show', $userProfile)->with('warning', '無法編輯他人資料');
+        }
+
         return view('user-profile.edit', compact('userProfile'));
     }
 

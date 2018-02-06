@@ -6,15 +6,18 @@
     <a href="{{ route('user-profile.index') }}" class="btn btn-secondary">
         <i class="fa fa-arrow-left" aria-hidden="true"></i> 通訊錄
     </a>
-    {{-- TODO: 權限 --}}
-    <a href="{{ route('user-profile.edit', $userProfile) }}" class="btn btn-primary">
-        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 編輯
-    </a>
-    {!! Form::open(['route' => ['user-profile.destroy', $userProfile], 'style' => 'display: inline', 'method' => 'DELETE', 'onSubmit' => "return confirm('確定要刪除嗎？');"]) !!}
-    <button type="submit" class="btn btn-danger">
-        <i class="fa fa-trash" aria-hidden="true"></i> 刪除
-    </button>
-    {!! Form::close() !!}
+    @if(Laratrust::owns($userProfile) || Laratrust::can('user-profile.manage'))
+        <a href="{{ route('user-profile.edit', $userProfile) }}" class="btn btn-primary">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 編輯
+        </a>
+    @endif
+    @if(Laratrust::can('user-profile.manage'))
+        {!! Form::open(['route' => ['user-profile.destroy', $userProfile], 'style' => 'display: inline', 'method' => 'DELETE', 'onSubmit' => "return confirm('確定要刪除嗎？');"]) !!}
+        <button type="submit" class="btn btn-danger">
+            <i class="fa fa-trash" aria-hidden="true"></i> 刪除
+        </button>
+        {!! Form::close() !!}
+    @endif
 @endsection
 
 @section('main_content')

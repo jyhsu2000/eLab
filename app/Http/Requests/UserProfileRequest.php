@@ -14,16 +14,18 @@ class UserProfileRequest extends FormRequest
      */
     public function authorize()
     {
-        //TODO: 權限
         /** @var UserProfile $userProfile */
         $userProfile = $this->route('user_profile');
-        if ($userProfile) {
-            if (!\Laratrust::owns($userProfile) && !true) {
-                return false;
-            }
+        //自己的資料
+        if ($userProfile && \Laratrust::owns($userProfile)) {
+            return true;
+        }
+        //具有管理權限
+        if (\Laratrust::can('user-profile.manage')) {
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     /**
