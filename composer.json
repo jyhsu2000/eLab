@@ -11,6 +11,7 @@
         "php": ">=7.0.0",
         "arcanedev/log-viewer": "^4.4",
         "barryvdh/laravel-ide-helper": "^2.4",
+        "bnbwebexpertise/laravel-attachments": "^1.0",
         "doctrine/dbal": "^2.6",
         "fideloper/proxy": "^3.3",
         "graham-campbell/throttle": "^6.0",

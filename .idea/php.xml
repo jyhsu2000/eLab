@@ -119,6 +119,8 @@
       <path value="$PROJECT_DIR$/vendor/marvinlabs/laravel-html-bootstrap-4" />
       <path value="$PROJECT_DIR$/vendor/marvinlabs/laravel-html-font-awesome" />
       <path value="$PROJECT_DIR$/vendor/laracasts/generators" />
+      <path value="$PROJECT_DIR$/vendor/bnbwebexpertise/laravel-attachments" />
+      <path value="$PROJECT_DIR$/vendor/bnbwebexpertise/php-uuid" />
     </include_path>
   </component>
   <component name="PhpInterpreters">

@@ -40,6 +40,7 @@ class UserProfileRequest extends FormRequest
             'name'    => 'required',
             'email'   => 'nullable|email',
             'link'    => 'nullable|url',
+            'photo'   => 'image',
         ];
     }
 }

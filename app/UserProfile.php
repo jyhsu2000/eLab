@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Bnb\Laravel\Attachments\HasAttachment;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -23,6 +24,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $info 個人簡介
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Bnb\Laravel\Attachments\Attachment[] $attachments
+ * @property-read null|string $photo_url
  * @property-read \App\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereAvatarPath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereCellPhone($value)
@@ -44,6 +47,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class UserProfile extends Model
 {
+    use HasAttachment;
+
     protected $fillable = [
         'user_id',
         'in_year',
@@ -60,6 +65,10 @@ class UserProfile extends Model
         'info',
     ];
 
+    protected $appends = [
+        'photoUrl',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -71,5 +80,18 @@ class UserProfile extends Model
         $options = [null => ' - 請下拉選擇 - '] + array_combine($types, $types);
 
         return $options;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getPhotoUrlAttribute()
+    {
+        $attachment = $this->attachment('photo');
+        if (!$attachment) {
+            return null;
+        }
+
+        return $attachment->url . '?disposition=inline';
     }
 }

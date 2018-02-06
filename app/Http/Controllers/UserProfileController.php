@@ -50,10 +50,18 @@ class UserProfileController extends Controller
      *
      * @param UserProfileRequest $request
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function store(UserProfileRequest $request)
     {
         $userProfile = UserProfile::create($request->all());
+        //新相片
+        $photoFile = $request->file('photo');
+        if ($photoFile) {
+            $userProfile->attach($photoFile, [
+                'key' => 'photo',
+            ]);
+        }
 
         return redirect()->route('user-profile.show', $userProfile)->with('success', '成員已建立');
     }
@@ -90,10 +98,23 @@ class UserProfileController extends Controller
      * @param UserProfileRequest $request
      * @param  \App\UserProfile $userProfile
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function update(UserProfileRequest $request, UserProfile $userProfile)
     {
         $userProfile->update($request->all());
+        //新相片
+        $photoFile = $request->file('photo');
+        if ($photoFile) {
+            //移除舊相片
+            $oldPhoto = $userProfile->attachment('photo');
+            if ($oldPhoto) {
+                $oldPhoto->delete();
+            }
+            $userProfile->attach($photoFile, [
+                'key' => 'photo',
+            ]);
+        }
 
         return redirect()->route('user-profile.show', $userProfile)->with('success', '成員已更新');
     }

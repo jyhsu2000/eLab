@@ -23,9 +23,14 @@
 @section('main_content')
     <div class="card">
         <div class="card-body text-center">
-            {{-- TODO: 大頭貼 --}}
-            <img src="{{ $userProfile->avatar_path }}" class="img-thumbnail"
-                 style="max-height: 200px; max-width: 200px"/>
+            @if($userProfile->photoUrl)
+                <img src="{{ $userProfile->photoUrl }}" class="img-thumbnail"
+                     style="max-height: 600px; max-width: 600px"/>
+            @else
+                <div class="img-thumbnail d-inline-flex justify-content-center" style="height: 600px; width: 600px; background-image: repeating-linear-gradient(-45deg, #dddddd 0px, #dddddd 25px, transparent 25px, transparent 50px, #dddddd 50px);">
+                    <div class="align-self-center">無相片</div>
+                </div>
+            @endif
         </div>
         <div class="card-body">
             <dl class="row" style="font-size: 120%">
