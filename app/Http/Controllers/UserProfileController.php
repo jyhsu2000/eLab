@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\UserProfileDataTable;
 use App\Http\Requests\UserProfileRequest;
+use App\User;
 use App\UserProfile;
 
 class UserProfileController extends Controller
@@ -28,7 +29,10 @@ class UserProfileController extends Controller
      */
     public function index(UserProfileDataTable $dataTable)
     {
-        return $dataTable->render('user-profile.index');
+        /** @var User $user */
+        $user = auth()->user();
+
+        return $dataTable->render('user-profile.index', compact('user'));
     }
 
     /**
