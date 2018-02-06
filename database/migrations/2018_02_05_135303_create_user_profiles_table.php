@@ -25,7 +25,6 @@ class CreateUserProfilesTable extends Migration
             $table->string('office_phone')->nullable()->comment('工作電話');
             $table->string('home_phone')->nullable()->comment('家裡電話');
             $table->string('cell_phone')->nullable()->comment('手機');
-            $table->string('avatar_path')->nullable()->comment('頭像路徑');
             $table->string('link')->nullable()->comment('個人網址');
             $table->text('info')->nullable()->comment('個人簡介');
             $table->timestamps();

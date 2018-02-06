@@ -21,7 +21,6 @@ $factory->define(\App\UserProfile::class, function (Faker $faker) {
         'office_phone'  => $faker->optional()->phoneNumber,
         'home_phone'    => $faker->optional()->phoneNumber,
         'cell_phone'    => $faker->optional()->phoneNumber,
-        'avatar_path'   => $faker->optional()->imageUrl(),
         'link'          => $faker->optional()->url,
         'info'          => $faker->optional()->sentence,
     ];

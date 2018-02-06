@@ -19,7 +19,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $office_phone 工作電話
  * @property string|null $home_phone 家裡電話
  * @property string|null $cell_phone 手機
- * @property string|null $avatar_path 頭像路徑
  * @property string|null $link 個人網址
  * @property string|null $info 個人簡介
  * @property \Carbon\Carbon|null $created_at
@@ -27,7 +26,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\Bnb\Laravel\Attachments\Attachment[] $attachments
  * @property-read null|string $photo_url
  * @property-read \App\User|null $user
- * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereAvatarPath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereCellPhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereEmail($value)
@@ -60,7 +58,6 @@ class UserProfile extends Model
         'office_phone',
         'home_phone',
         'cell_phone',
-        'avatar_path',
         'link',
         'info',
     ];
