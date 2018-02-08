@@ -3,6 +3,9 @@
 @else
     {{ bs()->formGroup(bs()->select('user_id')->options(\App\User::getOptions())->disabled())->label('使用者')->showAsRow() }}
 @endif
+<div class="alert alert-warning">
+    請注意，以下項目資訊皆為公開資訊，將直接顯示於網站
+</div>
 @if(isset($userProfile))
     <div class="row form-group">
         <label class="col-form-label col-sm-2" for="photo">原相片</label>
