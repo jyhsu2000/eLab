@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\UserProfile;
+
 class HomeController extends Controller
 {
     /**
@@ -11,6 +13,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $members = UserProfile::whereInSchool(true)->get();
+
+        return view('index', compact('members'));
     }
 }
