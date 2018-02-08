@@ -27,13 +27,13 @@ class LaravelMenu
         //右側
         Menu::make('right', function ($menu) {
             /* @var \Lavary\Menu\Builder $menu */
+            $menu->add('成員清單', ['route' => 'user-profile.index'])->active('user-profile/*');
             //會員
             if (auth()->check()) {
                 if (!auth()->user()->is_confirmed) {
                     $menu->add('尚未完成信箱驗證', ['route' => 'confirm-mail.resend'])
                         ->link->attr(['class' => 'text-danger']);
                 }
-                $menu->add('通訊錄', ['route' => 'user-profile.index'])->active('user-profile/*');
                 //管理員
                 if (Laratrust::can('menu.view') and auth()->user()->isConfirmed) {
                     /** @var \Lavary\Menu\Builder $adminMenu */

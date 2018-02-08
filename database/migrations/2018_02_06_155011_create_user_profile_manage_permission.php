@@ -15,8 +15,8 @@ class CreateUserProfileManagePermission extends Migration
     {
         $perm = Permission::create([
             'name'         => 'user-profile.manage',
-            'display_name' => '管理通訊錄',
-            'description'  => '管理通訊錄之成員資料',
+            'display_name' => '管理成員',
+            'description'  => '管理成員資料',
         ]);
 
         /* @var Role $admin */

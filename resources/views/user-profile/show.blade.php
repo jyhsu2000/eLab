@@ -4,7 +4,7 @@
 
 @section('buttons')
     <a href="{{ route('user-profile.index') }}" class="btn btn-secondary">
-        <i class="fa fa-arrow-left" aria-hidden="true"></i> 通訊錄
+        <i class="fa fa-arrow-left" aria-hidden="true"></i> 成員清單
     </a>
     @if(Laratrust::owns($userProfile) || Laratrust::can('user-profile.manage'))
         <a href="{{ route('user-profile.edit', $userProfile) }}" class="btn btn-primary">

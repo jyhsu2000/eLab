@@ -14,6 +14,9 @@
 //首頁
 Route::get('/', 'HomeController@index')->name('index');
 
+//成員清單
+Route::resource('user-profile', 'UserProfileController');
+
 //會員（須完成信箱驗證）
 Route::group(['middleware' => ['auth', 'email']], function () {
     //會員管理
@@ -43,7 +46,7 @@ Route::group(['middleware' => ['auth', 'email']], function () {
     });
     //權限：限實驗室成員進入
     Route::group(['middleware' => 'lab-member'], function () {
-        Route::resource('user-profile', 'UserProfileController');
+        //
     });
 });
 

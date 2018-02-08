@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', '通訊錄')
+@section('title', '成員清單')
 
 @section('buttons')
     @if($user)
