@@ -18,6 +18,7 @@ class CreateUserProfilesTable extends Migration
             $table->unsignedInteger('user_id')->nullable()->comment('使用者');
             $table->unsignedInteger('in_year')->nullable()->comment('入學年度');
             $table->unsignedInteger('graduate_year')->nullable()->comment('畢業年度');
+            $table->boolean('in_school')->default(false)->comment('在學中');
             $table->string('type')->nullable()->comment('類型');
             $table->string('name')->nullable()->comment('姓名');
             $table->string('nickname')->nullable()->comment('暱稱');

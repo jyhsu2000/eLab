@@ -23,6 +23,7 @@
 {{ bs()->formGroup(bs()->file('photo')->acceptImage())->label('新相片')->helpText('若不打算更換，則無需選擇檔案')->showAsRow() }}
 {{ bs()->formGroup(bs()->input('number', 'in_year')->placeholder('請填寫學年度（如學號開頭m04，入學年度為104）'))->label('入學年度')->showAsRow() }}
 {{ bs()->formGroup(bs()->input('number', 'graduate_year')->placeholder('請填寫學年度（如106學年度第二學期畢業，畢業年度為106）'))->label('畢業年度')->showAsRow() }}
+{{ bs()->formGroup(bs()->checkBox('in_school', '在學中'))->label('在學狀態')->showAsRow() }}
 {{ bs()->formGroup(bs()->select('type')->options(\App\UserProfile::getTypeOptions()))->label('類型')->showAsRow() }}
 {{ bs()->formGroup(bs()->text('name')->required())->label('姓名')->showAsRow() }}
 {{ bs()->formGroup(bs()->text('nickname'))->label('暱稱')->showAsRow() }}

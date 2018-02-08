@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $user_id 使用者
  * @property int|null $in_year 入學年度
  * @property int|null $graduate_year 畢業年度
+ * @property bool $in_school 在學中
  * @property string|null $type 類型
  * @property string|null $name 姓名
  * @property string|null $nickname 暱稱
@@ -32,6 +33,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereGraduateYear($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereHomePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereInSchool($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereInYear($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereInfo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereLink($value)
@@ -51,6 +53,7 @@ class UserProfile extends Model
         'user_id',
         'in_year',
         'graduate_year',
+        'in_school',
         'type',
         'name',
         'nickname',
@@ -64,6 +67,10 @@ class UserProfile extends Model
 
     protected $appends = [
         'photoUrl',
+    ];
+
+    protected $casts = [
+        'in_school' => 'boolean',
     ];
 
     public function user()

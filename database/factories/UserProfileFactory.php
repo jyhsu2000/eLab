@@ -14,6 +14,7 @@ $factory->define(\App\UserProfile::class, function (Faker $faker) {
         'user_id'       => $userId,
         'in_year'       => $inYear,
         'graduate_year' => $graduateYear,
+        'in_school'     => $faker->boolean,
         'type'          => $faker->randomElement(['教授', '碩士班', '博士班', '碩專班']),
         'name'          => $faker->name,
         'nickname'      => $faker->name,
