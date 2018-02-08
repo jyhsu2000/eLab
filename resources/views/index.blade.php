@@ -30,6 +30,7 @@
         }
 
         #section-title {
+            height: 100vh; /* 避免loading時頁面閃爍 */
             background: url("https://i.imgur.com/GjscCgG.jpg") no-repeat fixed center;
         }
 
@@ -78,7 +79,8 @@
                 <div class="container mt-2">
                     <div class="row">
                         <div class="col-4">
-                            <div style="height: 100%; background: url('https://i.imgur.com/ijlqQ2a.png') no-repeat center center / contain">
+                            <div
+                                style="height: 100%; background: url('https://i.imgur.com/ijlqQ2a.png') no-repeat center center / contain">
 
                             </div>
                         </div>
