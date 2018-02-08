@@ -28,7 +28,7 @@
                      style="max-height: 600px; max-width: 600px"/>
             @else
                 <div class="img-thumbnail d-inline-flex justify-content-center"
-                     style="height: 600px; width: 600px; background-image: repeating-linear-gradient(-45deg, #dddddd 0px, #dddddd 25px, transparent 25px, transparent 50px, #dddddd 50px);">
+                     style="height: 200px; width: 200px; background-image: repeating-linear-gradient(-45deg, #dddddd 0px, #dddddd 25px, transparent 25px, transparent 50px, #dddddd 50px);">
                     <div class="align-self-center">無相片</div>
                 </div>
             @endif
