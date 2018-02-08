@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <style>
         .jumbotron {
             border-radius: 40px;
@@ -101,40 +102,46 @@
         <div class="section" id="section-member">
             <div class="d-flex flex-column" style="min-height: 80%">
                 <h1 class="display-3 align-self-center text-border">實驗室成員</h1>
-                <div class="container mt-2" style="padding-bottom: 60px">
-                    <div class="row">
+                <div class="container-fluid mt-2" style="padding-bottom: 60px">
+                    <div class="main-carousel">
                         @foreach($members as $member)
-                            <div class="col-sm-6 col-md-4">
-                                <div class="card mb-2 profile-card">
-                                    <div class="card-block">
-                                        <div class="row">
-                                            <div class="col-md-4"
-                                                 style="min-height: 80px;background: url('{{ $member->photoUrl }}') no-repeat 15px center / contain">
+                            <div class="carousel-cell" style="width: 300px; height: 500px">
+                                <div class="card m-1 profile-card" style="height: 100%">
+                                    <div class="card-block text-center">
+                                        @if($member->photoUrl)
+                                            <div class="img-thumbnail d-inline-flex justify-content-center"
+                                                 style="height: 280px; width: 280px; background: url('{{ $member->photoUrl }}') no-repeat center center / contain">
                                             </div>
-                                            <div class="col-md">
-                                                <h4 class="card-title" style="overflow: hidden; height: 1.2em;">
-                                                    <a href="{{ route('user-profile.show', $member) }}">{{ $member->name }}</a>
-                                                </h4>
-                                                @if($member->nickname)
-                                                    <h4 class="card-title" style="overflow: hidden; height: 1.2em;">
-                                                        （{{ $member->nickname }}）
-                                                    </h4>
+                                        @else
+                                            <div class="img-thumbnail d-inline-flex justify-content-center"
+                                                 style="height: 280px; width: 280px; background-image: repeating-linear-gradient(-45deg, #dddddd 0px, #dddddd 25px, transparent 25px, transparent 50px, #dddddd 50px);">
+                                                <div class="align-self-center">無相片</div>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="card-block text-center">
+                                        <h4 class="card-title">
+                                            <a href="{{ route('user-profile.show', $member) }}">{{ $member->name }}</a>
+                                        </h4>
+                                        @if($member->nickname)
+                                            <h4 class="card-title">
+                                                （{{ $member->nickname }}）
+                                            </h4>
+                                        @endif
+                                        <p class="card-text">
+                                            <small class="text-muted">
+                                                {{--{!! nl2br(str_limit(e($member->info), 100, '...')) !!}--}}
+                                                {{ str_limit($member->info, 100, '...') }}
+                                            </small>
+                                        </p>
+                                        <p class="card-text">
+                                            <small class="text-muted">
+                                                {{ $member->type }}
+                                                @if($member->in_year || $member->graduate_year)
+                                                    （{{ $member->in_year }} ～ {{ $member->graduate_year }}）
                                                 @endif
-                                                <p class="card-text">
-                                                    <small class="text-muted">
-                                                        {{ str_limit($member->info, 50, '...') }}
-                                                    </small>
-                                                </p>
-                                                <p class="card-text">
-                                                    <small class="text-muted">
-                                                        {{ $member->type }}
-                                                        @if($member->in_year || $member->graduate_year)
-                                                            （{{ $member->in_year }} ～ {{ $member->graduate_year }}）
-                                                        @endif
-                                                    </small>
-                                                </p>
-                                            </div>
-                                        </div>
+                                            </small>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -147,13 +154,21 @@
 @endsection
 
 @section('js')
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.6/vendors/scrolloverflow.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.6/jquery.fullpage.min.js"></script>
     <script>
         $(function () {
+            $('.main-carousel').flickity({
+                // options
+                cellAlign: 'center',
+                contain: true,
+                // wrapAround: true,
+                autoPlay: true
+            });
             $('#fullpage').fullpage({
                 scrollBar: true,
-                scrollOverflow: true,
+                scrollOverflow: true
             });
         })
     </script>
