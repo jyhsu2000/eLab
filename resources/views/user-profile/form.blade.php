@@ -1,4 +1,8 @@
-{{ bs()->formGroup(bs()->select('user_id')->options(\App\User::getOptions()))->label('使用者')->showAsRow() }}
+@if(Laratrust::can('user-profile.manage'))
+    {{ bs()->formGroup(bs()->select('user_id')->options(\App\User::getOptions()))->label('使用者')->showAsRow() }}
+@else
+    {{ bs()->formGroup(bs()->select('user_id')->options(\App\User::getOptions())->disabled())->label('使用者')->showAsRow() }}
+@endif
 @if(isset($userProfile))
     <div class="row form-group">
         <label class="col-form-label col-sm-2" for="photo">原相片</label>

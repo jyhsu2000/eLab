@@ -107,6 +107,10 @@ class UserProfileController extends Controller
      */
     public function update(UserProfileRequest $request, UserProfile $userProfile)
     {
+        if (!\Laratrust::can('user-profile.manage')) {
+            //無管理權限者，禁止修改成員對應使用者
+            $request->merge(['user_id' => $userProfile->user_id]);
+        }
         $userProfile->update($request->all());
         //清除其他屬於該User的UserProfile的user_id，確保一對一
         $userId = $request->get('user_id');
