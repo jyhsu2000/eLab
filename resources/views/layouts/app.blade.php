@@ -51,7 +51,7 @@
 @include('components.navbar')
 
 {{-- Content --}}
-<div class="container" id="app">
+<div class="@yield('container-class', 'container')" id="app">
     @yield('content')
 </div>
 
