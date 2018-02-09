@@ -33,3 +33,10 @@
 {{ bs()->formGroup(bs()->text('cell_phone'))->label('手機')->showAsRow() }}
 {{ bs()->formGroup(bs()->input('url', 'link'))->label('個人網址')->showAsRow() }}
 {{ bs()->formGroup(bs()->textarea('info')->attribute('rows', 10))->label('個人簡介')->showAsRow() }}
+
+@section('js')
+    @parent
+    <script>
+        $('#user_id').select2();
+    </script>
+@endsection

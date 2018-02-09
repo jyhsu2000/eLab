@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
     {{--<link rel="stylesheet" href="//cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css">--}}
     <link rel="stylesheet" href="//cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <style>
         @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
         body {
@@ -76,6 +77,7 @@
 {{--<script src="//cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>--}}
 <script src="//cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
 {{--<script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>--}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script>
     //CSRF Token
     window.Laravel = @json([
@@ -134,7 +136,7 @@
             alertify.notify('{{ session('warning') }}', 'warning', 5);
         @endif
         // Tooltip
-        $('[title]:not(#tracy-debug *[title])').each(function () {
+        $('[title]:not(#tracy-debug *):not(.select2 *)').each(function () {
             $(this).tooltip({
                 placement: 'right'
             });
