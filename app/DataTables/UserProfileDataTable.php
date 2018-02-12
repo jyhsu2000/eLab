@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\ContactInfo;
+use App\User;
 use App\UserProfile;
 use Illuminate\Database\Eloquent\Builder;
 use Yajra\DataTables\EloquentDataTable;
@@ -33,6 +34,15 @@ class UserProfileDataTable extends DataTable
                 /** @var Builder|UserProfile $query */
                 $query->whereHas('contactInfos', function ($query) use ($keyword) {
                     /** @var Builder|ContactInfo $query */
+                    /** @var User $user */
+                    $user = auth()->user();
+                    if (!\Laratrust::can('user-profile.manage') && !optional($user)->userProfile) {
+                        $query->where(function ($query) {
+                            /** @var Builder|ContactInfo $query */
+                            $query->where('is_public', true);
+                        });
+                    }
+
                     $query->where('content', 'like', "%$keyword%");
                 });
             })

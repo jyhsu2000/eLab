@@ -103,7 +103,8 @@ class UserProfileController extends Controller
     public function show(UserProfile $userProfile)
     {
         $contactInfoQuery = $userProfile->contactInfos();
-        if (!\Laratrust::owns($userProfile) && !\Laratrust::can('user-profile.manage')) {
+        $user = auth()->user();
+        if (!\Laratrust::can('user-profile.manage') && !optional($user)->userProfile) {
             $contactInfoQuery->where('is_public', true);
         }
         $contactInfos = $contactInfoQuery->with('contactType')->get();
@@ -123,7 +124,7 @@ class UserProfileController extends Controller
             return redirect()->route('user-profile.show', $userProfile)->with('warning', '無法編輯他人資料');
         }
         $contactTypes = ContactType::all();
-        $contactInfos = $userProfile->contactInfos->keyBy('id');
+        $contactInfos = $userProfile->contactInfos->keyBy('contact_type_id');
 
         return view('user-profile.edit', compact('userProfile', 'contactTypes', 'contactInfos'));
     }
