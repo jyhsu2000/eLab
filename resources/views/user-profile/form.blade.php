@@ -27,12 +27,29 @@
 {{ bs()->formGroup(bs()->select('type')->options(\App\UserProfile::getTypeOptions()))->label('類型')->showAsRow() }}
 {{ bs()->formGroup(bs()->text('name')->required())->label('姓名')->showAsRow() }}
 {{ bs()->formGroup(bs()->text('nickname'))->label('暱稱')->showAsRow() }}
-{{ bs()->formGroup(bs()->email('email'))->label('聯絡信箱')->showAsRow() }}
-{{ bs()->formGroup(bs()->text('office_phone'))->label('工作電話')->showAsRow() }}
-{{ bs()->formGroup(bs()->text('home_phone'))->label('家裡電話')->showAsRow() }}
-{{ bs()->formGroup(bs()->text('cell_phone'))->label('手機')->showAsRow() }}
-{{ bs()->formGroup(bs()->input('url', 'link'))->label('個人網址')->showAsRow() }}
 {{ bs()->formGroup(bs()->textarea('info')->attribute('rows', 10))->label('個人簡介')->showAsRow() }}
+<div class="alert alert-warning">
+    以下為聯絡資訊，可逐一調整顯示設定，若非公開顯示，則僅有實驗室成員可見
+</div>
+@if(isset($userProfile))
+    @foreach($contactTypes as $contactType)
+        @if($contactType->is_url)
+            {{ bs()->formGroup(bs()->input('url', 'contact_'.$contactType->id, optional($contactInfos->get($contactType->id))->content))->label($contactType->name)->showAsRow() }}
+        @else
+            {{ bs()->formGroup(bs()->text('contact_'.$contactType->id, optional($contactInfos->get($contactType->id))->content))->label($contactType->name)->showAsRow() }}
+        @endif
+        {{ bs()->formGroup(bs()->checkBox('is_public_'.$contactType->id, '公開顯示'.$contactType->name, optional($contactInfos->get($contactType->id))->is_public !== false))->label(' ')->showAsRow() }}
+    @endforeach
+@else
+    @foreach($contactTypes as $contactType)
+        @if($contactType->is_url)
+            {{ bs()->formGroup(bs()->input('url', 'contact_'.$contactType->id))->label($contactType->name)->showAsRow() }}
+        @else
+            {{ bs()->formGroup(bs()->text('contact_'.$contactType->id))->label($contactType->name)->showAsRow() }}
+        @endif
+        {{ bs()->formGroup(bs()->checkBox('is_public_'.$contactType->id, '公開顯示'.$contactType->name, true))->label(' ')->showAsRow() }}
+    @endforeach
+@endif
 
 @section('js')
     @parent

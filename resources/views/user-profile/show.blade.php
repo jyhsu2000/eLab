@@ -64,27 +64,29 @@
                 <dt class="col-4 col-md-3">暱稱</dt>
                 <dd class="col-8 col-md-9">{{ $userProfile->nickname }}</dd>
 
-                <dt class="col-4 col-md-3">聯絡信箱</dt>
-                <dd class="col-8 col-md-9">{{ $userProfile->email }}</dd>
-
-                <dt class="col-4 col-md-3">工作電話</dt>
-                <dd class="col-8 col-md-9">{{ $userProfile->office_phone }}</dd>
-
-                <dt class="col-4 col-md-3">家裡電話</dt>
-                <dd class="col-8 col-md-9">{{ $userProfile->home_phone }}</dd>
-
-                <dt class="col-4 col-md-3">手機</dt>
-                <dd class="col-8 col-md-9">{{ $userProfile->cell_phone }}</dd>
-
-                <dt class="col-4 col-md-3">個人網址</dt>
-                <dd class="col-8 col-md-9">
-                    @if($userProfile->link)
-                        <a href="{{ $userProfile->link }}" target="_blank">{{ $userProfile->link }}</a>
-                    @endif
-                </dd>
-
                 <dt class="col-4 col-md-3">個人簡介</dt>
                 <dd class="col-8 col-md-9">{!! nl2br(e($userProfile->info)) !!}</dd>
+            </dl>
+            <hr>
+            <dl class="row" style="font-size: 120%">
+                @foreach($contactInfos as $contactInfo)
+                    <dt class="col-4 col-md-3">
+                        <i class="{{ $contactInfo->contactType->icon_class }}"></i>
+                        {{ $contactInfo->contactType->name }}
+                    </dt>
+                    <dd class="col-8 col-md-9">
+                        @if($contactInfo->is_public)
+                            <i class="fas fa-globe text-muted" title="公開"></i>
+                        @else
+                            <i class="fas fa-lock text-muted" title="僅實驗室成員可見"></i>
+                        @endif
+                        @if($contactInfo->contactType->is_url)
+                            <a href="{{ $contactInfo->content }}" target="_blank">{{ $contactInfo->content }}</a>
+                        @else
+                            {{ $contactInfo->content }}
+                        @endif
+                    </dd>
+                @endforeach
             </dl>
         </div>
     </div>

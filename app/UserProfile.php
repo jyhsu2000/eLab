@@ -81,7 +81,7 @@ class UserProfile extends Model
 
     public function contactInfos()
     {
-        return $this->hasMany(ContactInfo::class);
+        return $this->hasMany(ContactInfo::class)->orderBy('contact_type_id');
     }
 
     public static function getTypeOptions()

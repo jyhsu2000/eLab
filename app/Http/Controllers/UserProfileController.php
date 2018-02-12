@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\ContactInfo;
+use App\ContactType;
 use App\DataTables\UserProfileDataTable;
 use App\Http\Requests\UserProfileRequest;
 use App\User;
@@ -43,7 +45,9 @@ class UserProfileController extends Controller
      */
     public function create()
     {
-        return view('user-profile.create');
+        $contactTypes = ContactType::all();
+
+        return view('user-profile.create', compact('contactTypes'));
     }
 
     /**
@@ -69,6 +73,24 @@ class UserProfileController extends Controller
             $this->attachUploadedPhoto($userProfile, $photoFile);
         }
 
+        //聯絡資訊
+        $contactTypes = ContactType::all();
+        foreach ($contactTypes as $contactType) {
+            $content = request()->get('contact_' . $contactType->id);
+            if (empty($content)) {
+                //未填寫內容，直接跳過
+                continue;
+            }
+            //建立聯絡資訊
+            ContactInfo::updateOrCreate([
+                'user_profile_id' => $userProfile->id,
+                'contact_type_id' => $contactType->id,
+            ], [
+                'content'   => $content,
+                'is_public' => request()->exists('is_public_' . $contactType->id),
+            ]);
+        }
+
         return redirect()->route('user-profile.show', $userProfile)->with('success', '成員已建立');
     }
 
@@ -80,7 +102,13 @@ class UserProfileController extends Controller
      */
     public function show(UserProfile $userProfile)
     {
-        return view('user-profile.show', compact('userProfile'));
+        $contactInfoQuery = $userProfile->contactInfos();
+        if (!\Laratrust::owns($userProfile) && !\Laratrust::can('user-profile.manage')) {
+            $contactInfoQuery->where('is_public', true);
+        }
+        $contactInfos = $contactInfoQuery->with('contactType')->get();
+
+        return view('user-profile.show', compact('userProfile', 'contactInfos'));
     }
 
     /**
@@ -94,8 +122,10 @@ class UserProfileController extends Controller
         if (!\Laratrust::owns($userProfile) && !\Laratrust::can('user-profile.manage')) {
             return redirect()->route('user-profile.show', $userProfile)->with('warning', '無法編輯他人資料');
         }
+        $contactTypes = ContactType::all();
+        $contactInfos = $userProfile->contactInfos->keyBy('id');
 
-        return view('user-profile.edit', compact('userProfile'));
+        return view('user-profile.edit', compact('userProfile', 'contactTypes', 'contactInfos'));
     }
 
     /**
@@ -132,6 +162,26 @@ class UserProfileController extends Controller
         //新照片
         if ($photoFile) {
             $this->attachUploadedPhoto($userProfile, $photoFile);
+        }
+
+        //聯絡資訊
+        $contactTypes = ContactType::all();
+        foreach ($contactTypes as $contactType) {
+            $content = request()->get('contact_' . $contactType->id);
+            if (empty($content)) {
+                //未填寫內容，刪除對應項目
+                ContactInfo::where('user_profile_id', $userProfile->id)
+                    ->where('contact_type_id', $contactType->id)->delete();
+                continue;
+            }
+            //更新聯絡資訊
+            ContactInfo::updateOrCreate([
+                'user_profile_id' => $userProfile->id,
+                'contact_type_id' => $contactType->id,
+            ], [
+                'content'   => $content,
+                'is_public' => request()->exists('is_public_' . $contactType->id),
+            ]);
         }
 
         return redirect()->route('user-profile.show', $userProfile)->with('success', '成員已更新');

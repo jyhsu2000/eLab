@@ -23,7 +23,6 @@ class UserProfileDataTable extends DataTable
                 /** @var UserProfile $userProfile */
                 return view('user-profile.datatables.name', compact('userProfile'))->render();
             })
-            ->editColumn('email', 'user-profile.datatables.email')
             ->escapeColumns([]);
     }
 
@@ -71,30 +70,6 @@ class UserProfileDataTable extends DataTable
             'nickname'      => [
                 'title'   => '暱稱',
                 'visible' => false,
-            ],
-            'email'         => [
-                'title'     => '聯絡資訊',
-                'orderable' => false,
-            ],
-            'office_phone'  => [
-                'title'     => '工作電話',
-                'visible'   => false,
-                'orderable' => false,
-            ],
-            'home_phone'    => [
-                'title'     => '家裡電話',
-                'visible'   => false,
-                'orderable' => false,
-            ],
-            'cell_phone'    => [
-                'title'     => '手機',
-                'visible'   => false,
-                'orderable' => false,
-            ],
-            'link'          => [
-                'title'     => '個人網址',
-                'visible'   => false,
-                'orderable' => false,
             ],
         ];
     }
