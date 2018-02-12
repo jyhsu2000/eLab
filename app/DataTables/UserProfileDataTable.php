@@ -2,7 +2,9 @@
 
 namespace App\DataTables;
 
+use App\ContactInfo;
 use App\UserProfile;
+use Illuminate\Database\Eloquent\Builder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
 
@@ -23,6 +25,17 @@ class UserProfileDataTable extends DataTable
                 /** @var UserProfile $userProfile */
                 return view('user-profile.datatables.name', compact('userProfile'))->render();
             })
+            ->editColumn('contact', function ($userProfile) {
+                /** @var UserProfile $userProfile */
+                return view('user-profile.datatables.contact', compact('userProfile'))->render();
+            })
+            ->filterColumn('contact', function ($query, $keyword) {
+                /** @var Builder|UserProfile $query */
+                $query->whereHas('contactInfos', function ($query) use ($keyword) {
+                    /** @var Builder|ContactInfo $query */
+                    $query->where('content', 'like', "%$keyword%");
+                });
+            })
             ->escapeColumns([]);
     }
 
@@ -34,7 +47,7 @@ class UserProfileDataTable extends DataTable
      */
     public function query(UserProfile $model)
     {
-        return $model->newQuery()->with('user');
+        return $model->newQuery()->with('user', 'contactInfos.contactType');
     }
 
     /**
@@ -70,6 +83,10 @@ class UserProfileDataTable extends DataTable
             'nickname'      => [
                 'title'   => '暱稱',
                 'visible' => false,
+            ],
+            'contact'       => [
+                'title'     => '聯絡資訊',
+                'orderable' => false,
             ],
         ];
     }
