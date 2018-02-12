@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\Bnb\Laravel\Attachments\Attachment[] $attachments
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\ContactInfo[] $contactInfos
  * @property-read null|string $photo_url
  * @property-read \App\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereCellPhone($value)
@@ -76,6 +77,11 @@ class UserProfile extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function contactInfos()
+    {
+        return $this->hasMany(ContactInfo::class);
     }
 
     public static function getTypeOptions()
