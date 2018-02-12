@@ -1,6 +1,6 @@
 <ul class="list-unstyled">
     @if($email)
-        <li><i class="fa fa-fw fa-envelope-o" aria-hidden="true" title="聯絡信箱"></i> {{ $email }}</li> @endif
+        <li><i class="fa fa-fw fa-envelope" aria-hidden="true" title="聯絡信箱"></i> {{ $email }}</li> @endif
     @if($office_phone)
         <li><i class="fa fa-fw fa-phone" aria-hidden="true" title="工作電話"></i> {{ $office_phone }}</li> @endif
     @if($home_phone)

@@ -8,7 +8,7 @@
     </a>
     @if(Laratrust::owns($userProfile) || Laratrust::can('user-profile.manage'))
         <a href="{{ route('user-profile.edit', $userProfile) }}" class="btn btn-primary">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 編輯
+            <i class="fa fa-edit" aria-hidden="true"></i> 編輯
         </a>
     @endif
     @if(Laratrust::can('user-profile.manage'))
