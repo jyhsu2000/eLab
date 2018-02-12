@@ -72,22 +72,29 @@ class UserProfileDataTable extends DataTable
                 'title'   => '暱稱',
                 'visible' => false,
             ],
-            'email'         => ['title' => '聯絡資訊'],
+            'email'         => [
+                'title'     => '聯絡資訊',
+                'orderable' => false,
+            ],
             'office_phone'  => [
-                'title'   => '工作電話',
-                'visible' => false,
+                'title'     => '工作電話',
+                'visible'   => false,
+                'orderable' => false,
             ],
             'home_phone'    => [
-                'title'   => '家裡電話',
-                'visible' => false,
+                'title'     => '家裡電話',
+                'visible'   => false,
+                'orderable' => false,
             ],
             'cell_phone'    => [
-                'title'   => '手機',
-                'visible' => false,
+                'title'     => '手機',
+                'visible'   => false,
+                'orderable' => false,
             ],
             'link'          => [
-                'title'   => '個人網址',
-                'visible' => false,
+                'title'     => '個人網址',
+                'visible'   => false,
+                'orderable' => false,
             ],
         ];
     }
