@@ -75,9 +75,7 @@
                         {{ $contactInfo->contactType->name }}
                     </dt>
                     <dd class="col-8 col-md-9">
-                        @if($contactInfo->is_public)
-                            <i class="fas fa-globe text-muted" title="公開"></i>
-                        @else
+                        @if(!$contactInfo->is_public)
                             <i class="fas fa-lock text-muted" title="僅實驗室成員可見"></i>
                         @endif
                         @if($contactInfo->contactType->is_url)
