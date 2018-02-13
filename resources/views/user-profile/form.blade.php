@@ -33,21 +33,43 @@
 </div>
 @if(isset($userProfile))
     @foreach($contactTypes as $contactType)
-        @if($contactType->is_url)
-            {{ bs()->formGroup(bs()->input('url', 'contact_'.$contactType->id, optional($contactInfos->get($contactType->id))->content))->label($contactType->name)->showAsRow() }}
-        @else
-            {{ bs()->formGroup(bs()->text('contact_'.$contactType->id, optional($contactInfos->get($contactType->id))->content))->label($contactType->name)->showAsRow() }}
-        @endif
-        {{ bs()->formGroup(bs()->checkBox('is_public_'.$contactType->id, '公開顯示'.$contactType->name, optional($contactInfos->get($contactType->id))->is_public !== false))->label(' ')->showAsRow() }}
+        <div class="row form-group">
+            <label class="col-form-label col-sm-2" for="contact_{{ $contactType->id }}">{{ $contactType->name }}</label>
+            <div class="col-sm-10">
+                <div class="input-group">
+                    @if($contactType->is_url)
+                        {{ bs()->input('url', 'contact_'.$contactType->id, optional($contactInfos->get($contactType->id))->content) }}
+                    @else
+                        {{ bs()->text('contact_'.$contactType->id, optional($contactInfos->get($contactType->id))->content) }}
+                    @endif
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            {{ bs()->checkBox('is_public_'.$contactType->id, '公開顯示', optional($contactInfos->get($contactType->id))->is_public !== false) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     @endforeach
 @else
     @foreach($contactTypes as $contactType)
-        @if($contactType->is_url)
-            {{ bs()->formGroup(bs()->input('url', 'contact_'.$contactType->id))->label($contactType->name)->showAsRow() }}
-        @else
-            {{ bs()->formGroup(bs()->text('contact_'.$contactType->id))->label($contactType->name)->showAsRow() }}
-        @endif
-        {{ bs()->formGroup(bs()->checkBox('is_public_'.$contactType->id, '公開顯示'.$contactType->name, true))->label(' ')->showAsRow() }}
+        <div class="row form-group">
+            <label class="col-form-label col-sm-2" for="contact_{{ $contactType->id }}">{{ $contactType->name }}</label>
+            <div class="col-sm-10">
+                <div class="input-group">
+                    @if($contactType->is_url)
+                        {{ bs()->input('url', 'contact_'.$contactType->id) }}
+                    @else
+                        {{ bs()->text('contact_'.$contactType->id) }}
+                    @endif
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            {{ bs()->checkBox('is_public_'.$contactType->id, '公開顯示', true) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     @endforeach
 @endif
 
