@@ -46,8 +46,9 @@ class UserProfileController extends Controller
     public function create()
     {
         $contactTypes = ContactType::all();
+        $contactInfos = collect();
 
-        return view('user-profile.create', compact('contactTypes'));
+        return view('user-profile.create', compact('contactTypes', 'contactInfos'));
     }
 
     /**
