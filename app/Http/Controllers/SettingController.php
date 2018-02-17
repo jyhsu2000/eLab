@@ -7,7 +7,6 @@ use Setting;
 
 class SettingController extends Controller
 {
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -41,7 +40,6 @@ class SettingController extends Controller
             } else {
                 Setting::forget($settingItem);
             }
-
         }
         //TODO: 處理其他設定
         //儲存設定
