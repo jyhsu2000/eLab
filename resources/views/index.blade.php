@@ -13,6 +13,7 @@
         }
 
         .lab-name {
+            text-align: center;
             text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white, 0 0 40px white, 0 0 70px white, 0 0 80px white, 0 0 100px white;
         }
 
@@ -60,8 +61,8 @@
         <div class="section" id="section-title">
             <div class="d-flex flex-column" style="min-height: 80%">
                 <div class="my-auto jumbotron align-self-center">
-                    <h1 class="display-1 lab-name">{{ config('app.name') }}</h1>
-                    <h1 class="display-2 lab-name">{{ config('app.cht_name') }}</h1>
+                    <h1 class="display-1 lab-name">{{ Setting::get('lab_name', config('app.name')) }}</h1>
+                    <h1 class="display-2 lab-name">{{ Setting::get('lab_full_name', config('app.cht_name')) }}</h1>
                 </div>
                 <div class="mt-auto animated flash align-self-center text-center">
                     <a href="javascript:void(0)" style="text-decoration: none; color: white"
