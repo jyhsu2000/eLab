@@ -343,3 +343,6 @@ _ide_helper.php
 .phpstorm.meta.php
 
 .idea/vagrant.xml
+
+### Laravel Settings ###
+storage/settings.json

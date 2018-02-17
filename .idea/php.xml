@@ -122,6 +122,7 @@
       <path value="$PROJECT_DIR$/vendor/bnbwebexpertise/laravel-attachments" />
       <path value="$PROJECT_DIR$/vendor/bnbwebexpertise/php-uuid" />
       <path value="$PROJECT_DIR$/vendor/intervention/image" />
+      <path value="$PROJECT_DIR$/vendor/anlutro/l4-settings" />
     </include_path>
   </component>
   <component name="PhpInterpreters">
