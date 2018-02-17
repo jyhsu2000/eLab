@@ -47,7 +47,6 @@ class LaravelMenu
                         $adminMenu->add('角色管理', ['route' => 'role.index']);
                     }
 
-
                     if (Laratrust::can('setting.manage')) {
                         $adminMenu->add('網站設定', ['route' => 'setting.edit']);
                     }

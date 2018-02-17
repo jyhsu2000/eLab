@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
-
     /**
      * Show the form for editing the specified resource.
      *
