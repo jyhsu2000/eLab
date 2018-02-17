@@ -44,6 +44,12 @@ Route::group(['middleware' => ['auth', 'email']], function () {
         Route::get('edit', 'ProfileController@getEditProfile')->name('profile.edit');
         Route::put('update', 'ProfileController@updateProfile')->name('profile.update');
     });
+    //網站設定
+    Route::group(['middleware' => 'permission:setting.manage'], function () {
+        Route::get('setting', 'SettingController@edit')->name('setting.edit');
+        Route::patch('setting', 'SettingController@update')->name('setting.update');
+    });
+
     //權限：限實驗室成員進入
     Route::group(['middleware' => 'lab-member'], function () {
         //

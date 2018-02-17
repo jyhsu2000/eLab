@@ -47,6 +47,11 @@ class LaravelMenu
                         $adminMenu->add('角色管理', ['route' => 'role.index']);
                     }
 
+
+                    if (Laratrust::can('setting.manage')) {
+                        $adminMenu->add('網站設定', ['route' => 'setting.edit']);
+                    }
+
                     if (Laratrust::can('log-viewer.access')) {
                         $adminMenu->add(
                             '記錄檢視器 <i class="fas fa-external-link-alt" aria-hidden="true"></i>',
