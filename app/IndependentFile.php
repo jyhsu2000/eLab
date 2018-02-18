@@ -28,7 +28,6 @@ class IndependentFile extends Model
         'name',
     ];
 
-
     /**
      * @return null|string
      */
