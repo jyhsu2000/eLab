@@ -24,8 +24,12 @@ class SettingRequest extends FormRequest
     public function rules()
     {
         return [
-            'lab_name'      => 'nullable',
-            'lab_full_name' => 'nullable',
+            'lab_name'           => 'nullable',
+            'lab_full_name'      => 'nullable',
+            'background_title'   => 'nullable|image',
+            'background_intro'   => 'nullable|image',
+            'background_teacher' => 'nullable|image',
+            'background_member'  => 'nullable|image',
         ];
     }
 }

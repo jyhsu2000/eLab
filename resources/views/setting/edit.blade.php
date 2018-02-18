@@ -12,7 +12,31 @@
         </div>
         <div class="card-body">
             <h5 class="card-title">首頁背景</h5>
-            {{-- TODO: 設定項目 --}}
+            <span class="text-muted">若不打算更換，則無需選擇檔案</span>
+            <div class="row">
+                @foreach($backgroundSettingItems as $key => $name)
+                    <div class="card col-3">
+                        <div class="card-body">
+                            <p class="card-title">{{ $name }}</p>
+                        </div>
+                        <div class="card-body text-center">
+                            @if($backgroundUrls[$key])
+                                <div class="img-thumbnail d-inline-flex justify-content-center"
+                                     style="width: 160px; height: 160px; background: url('{{ $backgroundUrls[$key] }}') no-repeat center center / contain"></div>
+                                {{ bs()->checkBox('delete_background_'.$key, '刪除相片') }}
+                            @else
+                                <div class="img-thumbnail d-inline-flex justify-content-center"
+                                     style="height: 160px; width: 160px; background-image: repeating-linear-gradient(-45deg, #dddddd 0px, #dddddd 25px, transparent 25px, transparent 50px, #dddddd 50px);">
+                                    <div class="align-self-center">未設定</div>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="card-body">
+                            {{ bs()->formGroup(bs()->file('background_'.$key)->acceptImage()) }}
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
         <div class="card-body">
             <h5 class="card-title">實驗室</h5>
