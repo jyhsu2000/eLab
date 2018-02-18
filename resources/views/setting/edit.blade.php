@@ -23,7 +23,7 @@
                             @if($backgroundUrls[$key])
                                 <div class="img-thumbnail d-inline-flex justify-content-center"
                                      style="width: 160px; height: 160px; background: url('{{ $backgroundUrls[$key] }}') no-repeat center center / contain"></div>
-                                {{ bs()->checkBox('delete_background_'.$key, '刪除相片') }}
+                                {{ bs()->checkBox('delete_background_'.$key, '刪除圖片') }}
                             @else
                                 <div class="img-thumbnail d-inline-flex justify-content-center"
                                      style="height: 160px; width: 160px; background-image: repeating-linear-gradient(-45deg, #dddddd 0px, #dddddd 25px, transparent 25px, transparent 50px, #dddddd 50px);">

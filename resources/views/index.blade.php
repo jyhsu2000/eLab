@@ -37,19 +37,19 @@
 
         #section-title {
             height: 100vh; /* 避免loading時頁面閃爍 */
-            background: url("https://i.imgur.com/GjscCgG.jpg") no-repeat fixed center;
+            background: url("{{ $backgroundUrls['title'] }}") no-repeat fixed center / cover;
         }
 
         #section-intro {
-            background: url("https://i.imgur.com/ZOcLM7h.jpg") no-repeat fixed center;
+            background: url("{{ $backgroundUrls['intro'] }}") no-repeat fixed center / cover;
         }
 
         #section-teacher {
-            background: url("https://i.imgur.com/2OmYzOU.jpg") no-repeat fixed center;
+            background: url("{{ $backgroundUrls['teacher'] }}") no-repeat fixed center / cover;
         }
 
         #section-member {
-            background: url("https://i.imgur.com/EhWls2N.jpg") no-repeat fixed center;
+            background: url("{{ $backgroundUrls['member'] }}") no-repeat fixed center / cover;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
