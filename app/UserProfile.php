@@ -16,11 +16,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $type 類型
  * @property string|null $name 姓名
  * @property string|null $nickname 暱稱
- * @property string|null $email 聯絡信箱
- * @property string|null $office_phone 工作電話
- * @property string|null $home_phone 家裡電話
- * @property string|null $cell_phone 手機
- * @property string|null $link 個人網址
  * @property string|null $info 個人簡介
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
@@ -28,19 +23,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\ContactInfo[] $contactInfos
  * @property-read null|string $photo_url
  * @property-read \App\User|null $user
- * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereCellPhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereGraduateYear($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereHomePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereInSchool($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereInYear($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereInfo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereLink($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereNickname($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereOfficePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereUserId($value)
