@@ -95,7 +95,6 @@ class SettingController extends Controller
             }
         }
 
-        //TODO: 處理其他設定
         //儲存設定
         Setting::save();
 
