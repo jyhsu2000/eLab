@@ -9,11 +9,12 @@ use Setting;
 
 class SettingController extends Controller
 {
-    private static $backgroundSettingItems = [
-        'title'   => '標題',
-        'intro'   => '實驗室簡介',
-        'teacher' => '指導教授',
-        'member'  => '實驗室成員',
+    private static $independentFileNames = [
+        'background_title',
+        'background_intro',
+        'background_teacher',
+        'background_member',
+        'teacher_photo',
     ];
 
     /**
@@ -25,26 +26,17 @@ class SettingController extends Controller
     {
         $setting = collect(Setting::all());
         //背景圖項目
-        $backgroundSettingItems = self::$backgroundSettingItems;
-        //背景圖名稱
-        $independentFileNames = array_map(function ($key) {
-            return 'background_' . $key;
-        }, array_keys($backgroundSettingItems));
+        $backgroundSettingItems = [
+            'title'   => '標題',
+            'intro'   => '實驗室簡介',
+            'teacher' => '指導教授',
+            'member'  => '實驗室成員',
+        ];
         //對應獨立檔案Model
         /** @var Collection|IndependentFile $independentFiles */
-        $independentFiles = IndependentFile::whereIn('name', $independentFileNames)->get()->keyBy('name');
-        $backgroundUrls = [];
-        foreach ($backgroundSettingItems as $key => $name) {
-            /** @var IndependentFile $independentFile */
-            $independentFile = $independentFiles->get('background_' . $key);
-            if ($independentFile) {
-                $backgroundUrls[$key] = $independentFile->file_url;
-            } else {
-                $backgroundUrls[$key] = null;
-            }
-        }
+        $independentFiles = IndependentFile::whereIn('name', static::$independentFileNames)->get()->keyBy('name');
 
-        return view('setting.edit', compact('setting', 'backgroundSettingItems', 'backgroundUrls'));
+        return view('setting.edit', compact('setting', 'backgroundSettingItems', 'independentFiles'));
     }
 
     /**
@@ -60,6 +52,8 @@ class SettingController extends Controller
         $settingItems = [
             'lab_name',
             'lab_full_name',
+            'lab_intro',
+            'teacher',
         ];
         //更新設定
         foreach ($settingItems as $settingItem) {
@@ -70,15 +64,13 @@ class SettingController extends Controller
                 Setting::forget($settingItem);
             }
         }
-        //背景圖片
-        $backgroundSettingItems = self::$backgroundSettingItems;
-        foreach ($backgroundSettingItems as $key => $name) {
+        foreach (static::$independentFileNames as $key) {
             /** @var IndependentFile $independentFile */
-            $independentFile = IndependentFile::firstOrCreate(['name' => 'background_' . $key]);
+            $independentFile = IndependentFile::firstOrCreate(['name' => $key]);
             //新圖片
-            $backgroundImageFile = $request->file('background_' . $key);
+            $backgroundImageFile = $request->file($key);
             //移除舊圖片
-            if ($backgroundImageFile || $request->exists('delete_background_' . $key)) {
+            if ($backgroundImageFile || $request->exists('delete_' . $key)) {
                 $oldFile = $independentFile->attachment('file');
                 if ($oldFile) {
                     $oldFile->delete();

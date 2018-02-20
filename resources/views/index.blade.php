@@ -37,19 +37,19 @@
 
         #section-title {
             height: 100vh; /* 避免loading時頁面閃爍 */
-            background: url("{{ $backgroundUrls['title'] }}") no-repeat fixed center / cover;
+            background: url("{{ $imageUrls['background_title'] }}") no-repeat fixed center / cover;
         }
 
         #section-intro {
-            background: url("{{ $backgroundUrls['intro'] }}") no-repeat fixed center / cover;
+            background: url("{{ $imageUrls['background_intro'] }}") no-repeat fixed center / cover;
         }
 
         #section-teacher {
-            background: url("{{ $backgroundUrls['teacher'] }}") no-repeat fixed center / cover;
+            background: url("{{ $imageUrls['background_teacher'] }}") no-repeat fixed center / cover;
         }
 
         #section-member {
-            background: url("{{ $backgroundUrls['member'] }}") no-repeat fixed center / cover;
+            background: url("{{ $imageUrls['background_member'] }}") no-repeat fixed center / cover;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -90,7 +90,7 @@
                     <div class="row">
                         <div class="col-4">
                             <div
-                                style="height: 100%; background: url('https://i.imgur.com/ijlqQ2a.png') no-repeat center center / contain">
+                                style="height: 100%; background: url('{{ $imageUrls['teacher_photo'] }}') no-repeat center center / contain">
                             </div>
                         </div>
                         <div class="jumbotron col" style="height: 40vh;">
