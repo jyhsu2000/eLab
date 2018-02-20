@@ -55,9 +55,16 @@ class SettingController extends Controller
             'lab_intro',
             'teacher',
         ];
+        $htmlSettingItems = [
+            'lab_intro',
+            'teacher',
+        ];
         //更新設定
         foreach ($settingItems as $settingItem) {
             $value = $request->get($settingItem);
+            if (in_array($settingItem, $htmlSettingItems)) {
+                $value = clean($value, 'html5-definitions');
+            }
             if (!empty($value)) {
                 Setting::set($settingItem, $value);
             } else {

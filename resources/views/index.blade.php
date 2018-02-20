@@ -77,8 +77,8 @@
             <div class="d-flex flex-column" style="min-height: 80%">
                 <h1 class="display-3 align-self-center text-border">實驗室簡介</h1>
                 <div class="container mt-2">
-                    <div class="jumbotron" style="min-height: 40vh;">
-                        實驗室簡介
+                    <div class="jumbotron" style="min-height: 40vh; max-height: 60vh; overflow:auto;">
+                        {!! $labIntro !!}
                     </div>
                 </div>
             </div>
@@ -93,8 +93,8 @@
                                 style="height: 100%; background: url('{{ $imageUrls['teacher_photo'] }}') no-repeat center center / contain">
                             </div>
                         </div>
-                        <div class="jumbotron col" style="height: 40vh;">
-                            指導教授
+                        <div class="jumbotron col" style="min-height: 40vh; max-height: 60vh; overflow:auto;">
+                            {!! $teacher !!}
                         </div>
                     </div>
                 </div>
@@ -131,7 +131,6 @@
                                         @endif
                                         <p class="card-text">
                                             <small class="text-muted">
-                                                {{--{!! nl2br(str_limit(e($member->info), 100, '...')) !!}--}}
                                                 {{ str_limit($member->info, 100, '...') }}
                                             </small>
                                         </p>

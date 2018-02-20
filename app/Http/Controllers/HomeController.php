@@ -34,8 +34,11 @@ class HomeController extends Controller
             }
         }
 
+        $labIntro = \Setting::get('lab_intro');
+        $teacher = \Setting::get('teacher');
+
         $members = UserProfile::whereInSchool(true)->get();
 
-        return view('index', compact('imageUrls', 'members'));
+        return view('index', compact('imageUrls', 'labIntro', 'teacher', 'members'));
     }
 }
