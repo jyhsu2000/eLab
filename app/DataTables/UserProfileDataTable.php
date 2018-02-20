@@ -22,6 +22,11 @@ class UserProfileDataTable extends DataTable
         $dataTable = new EloquentDataTable($query);
 
         return $dataTable
+            ->editColumn('year', function ($userProfile) {
+                /** @var UserProfile $userProfile */
+                return view('user-profile.datatables.year', compact('userProfile'))->render();
+            })
+            ->orderColumn('year', 'in_year $1')
             ->editColumn('name', function ($userProfile) {
                 /** @var UserProfile $userProfile */
                 return view('user-profile.datatables.name', compact('userProfile'))->render();
@@ -86,8 +91,19 @@ class UserProfileDataTable extends DataTable
     {
         return [
             'id'            => ['title' => '#'],
-            'in_year'       => ['title' => '入學年度'],
-            'graduate_year' => ['title' => '畢業年度'],
+            'year'          => [
+                'title'      => '學年度',
+//                'orderable'  => false,
+                'searchable' => false,
+            ],
+            'in_year'       => [
+                'title'   => '入學年度',
+                'visible' => false,
+            ],
+            'graduate_year' => [
+                'title'   => '畢業年度',
+                'visible' => false,
+            ],
             'type'          => ['title' => '類型'],
             'name'          => ['title' => '姓名'],
             'nickname'      => [
