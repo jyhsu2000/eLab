@@ -76,8 +76,8 @@
         <div class="section" id="section-intro">
             <div class="d-flex flex-column" style="min-height: 80%">
                 <h1 class="display-3 align-self-center text-border">實驗室簡介</h1>
-                <div class="container mt-2">
-                    <div class="jumbotron" style="min-height: 40vh; max-height: 60vh; overflow:auto;">
+                <div class="container mt-2" style="padding-bottom: 60px">
+                    <div class="jumbotron" style="min-height: 40vh; overflow:auto;">
                         {!! $labIntro !!}
                     </div>
                 </div>
@@ -86,14 +86,14 @@
         <div class="section" id="section-teacher">
             <div class="d-flex flex-column" style="min-height: 80%">
                 <h1 class="display-3 align-self-center text-border">指導教授</h1>
-                <div class="container mt-2">
+                <div class="container mt-2" style="padding-bottom: 60px">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <div
-                                style="height: 100%; background: url('{{ $imageUrls['teacher_photo'] }}') no-repeat center center / contain">
+                                style="height: 100%; background: url('{{ $imageUrls['teacher_photo'] }}') no-repeat center top / contain">
                             </div>
                         </div>
-                        <div class="jumbotron col" style="min-height: 40vh; max-height: 60vh; overflow:auto;">
+                        <div class="jumbotron col" style="min-height: 40vh; overflow:auto;">
                             {!! $teacher !!}
                         </div>
                     </div>
