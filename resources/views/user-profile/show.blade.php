@@ -86,6 +86,19 @@
                     </dd>
                 @endforeach
             </dl>
+            <hr>
+            <h4 class="card-title">
+                工作經歷/任職公司
+                <a href="{{ route('job-experience.create', ['user-profile' => $userProfile->id]) }}" class="btn btn-primary btn-sm">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i> 新增
+                </a>
+            </h4>
+            <ul>
+                {{-- TODO: 工作經歷 --}}
+                <li>xxxx (19xx-xx ~ 20xx)</li>
+                <li>xxxx (20xx-xx-xx ~ 20xx)</li>
+                <li>xxxx (20xx ~ )</li>
+            </ul>
         </div>
     </div>
 @endsection
