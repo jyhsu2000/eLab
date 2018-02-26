@@ -19,10 +19,10 @@ class CreateJobExperiencesTable extends Migration
             $table->boolean('is_public')->comment('公開顯示');
             $table->integer('start_year')->nullable()->comment('開始年');
             $table->integer('start_month')->nullable()->comment('開始月');
-            $table->integer('start_date')->nullable()->comment('開始日');
+            $table->integer('start_day')->nullable()->comment('開始日');
             $table->integer('end_year')->nullable()->comment('結束年');
             $table->integer('end_month')->nullable()->comment('結束月');
-            $table->integer('end_date')->nullable()->comment('結束日');
+            $table->integer('end_day')->nullable()->comment('結束日');
             $table->timestamps();
 
             $table->foreign('user_profile_id')->references('id')->on('user_profiles')
