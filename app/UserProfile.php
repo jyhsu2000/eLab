@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\Bnb\Laravel\Attachments\Attachment[] $attachments
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\ContactInfo[] $contactInfos
  * @property-read null|string $photo_url
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\JobExperience[] $jobExperiences
  * @property-read \App\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereGraduateYear($value)
@@ -72,6 +73,11 @@ class UserProfile extends Model
     public function contactInfos()
     {
         return $this->hasMany(ContactInfo::class)->orderBy('contact_type_id');
+    }
+
+    public function jobExperiences()
+    {
+        return $this->hasMany(JobExperience::class);
     }
 
     public static function getTypeOptions()
