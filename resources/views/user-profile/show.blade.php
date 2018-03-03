@@ -89,15 +89,34 @@
             <hr>
             <h4 class="card-title">
                 工作經歷/任職公司
-                <a href="{{ route('job-experience.create', ['user-profile' => $userProfile->id]) }}" class="btn btn-primary btn-sm">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i> 新增
-                </a>
+                @if(Laratrust::owns($userProfile) || Laratrust::can('user-profile.manage'))
+                    <a href="{{ route('job-experience.create', ['user-profile' => $userProfile->id]) }}"
+                       class="btn btn-primary btn-sm">
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i> 新增
+                    </a>
+                @endif
             </h4>
             <ul>
-                {{-- TODO: 工作經歷 --}}
-                <li>xxxx (19xx-xx ~ 20xx)</li>
-                <li>xxxx (20xx-xx-xx ~ 20xx)</li>
-                <li>xxxx (20xx ~ )</li>
+                @forelse($jobExperiences as $jobExperience)
+                    <li>
+                        @if(!$jobExperience->is_public)
+                            <i class="fas fa-lock text-muted" title="僅實驗室成員可見"></i>
+                        @endif
+                        {{ $jobExperience->content }}{{ $jobExperience->date_range }}
+                        @if(Laratrust::owns($userProfile) || Laratrust::can('user-profile.manage'))
+                            <a href="{{ route('job-experience.edit', $jobExperience) }}" class="btn btn-primary btn-sm">
+                                <i class="fa fa-edit" aria-hidden="true"></i> 編輯
+                            </a>
+                            {!! Form::open(['route' => ['job-experience.destroy', $jobExperience], 'style' => 'display: inline', 'method' => 'DELETE', 'onSubmit' => "return confirm('確定要刪除嗎？');"]) !!}
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fa fa-trash" aria-hidden="true"></i> 刪除
+                            </button>
+                            {!! Form::close() !!}
+                        @endif
+                    </li>
+                @empty
+                    <li>暫無</li>
+                @endforelse
             </ul>
         </div>
     </div>

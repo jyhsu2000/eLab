@@ -10,17 +10,17 @@
 <div class="row form-group">
     <label class="col-form-label col-sm-2" for="photo">開始時間</label>
     <div class="col-sm-10 date-select">
-        {{ bs()->select('start_year', []) }}
-        {{ bs()->select('start_month', []) }}
-        {{ bs()->select('start_day', []) }}
+        {{ bs()->select('start_year', $options['year']) }}
+        {{ bs()->select('start_month', $options['month']) }}
+        {{ bs()->select('start_day', $options['day']) }}
     </div>
 </div>
 <div class="row form-group">
     <label class="col-form-label col-sm-2" for="photo">結束時間</label>
     <div class="col-sm-10 date-select">
-        {{ bs()->select('end_year', []) }}
-        {{ bs()->select('end_month', []) }}
-        {{ bs()->select('end_day', []) }}
+        {{ bs()->select('end_year', $options['year']) }}
+        {{ bs()->select('end_month', $options['month']) }}
+        {{ bs()->select('end_day', $options['day']) }}
     </div>
 </div>
 
@@ -46,8 +46,7 @@
                 yearLabel: '年',
                 monthLabel: '月',
                 dayLabel: '日',
-                keepLabels: true,
-                generateOptions: true
+                keepLabels: false
             });
             $().dateSelectBoxes({
                 yearElement: $('#end_year'),
@@ -56,8 +55,7 @@
                 yearLabel: '年',
                 monthLabel: '月',
                 dayLabel: '日',
-                keepLabels: true,
-                generateOptions: true
+                keepLabels: false
             });
         })
     </script>

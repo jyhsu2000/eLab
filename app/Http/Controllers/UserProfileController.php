@@ -110,7 +110,12 @@ class UserProfileController extends Controller
         }
         $contactInfos = $contactInfoQuery->with('contactType')->get();
 
-        return view('user-profile.show', compact('userProfile', 'contactInfos'));
+        $jobExperiences = $userProfile->jobExperiences;
+        if (!\Laratrust::can('user-profile.manage') && !optional($user)->userProfile) {
+            $jobExperiences = $userProfile->jobExperiences()->where('is_public', true)->get();
+        }
+
+        return view('user-profile.show', compact('userProfile', 'contactInfos', 'jobExperiences'));
     }
 
     /**

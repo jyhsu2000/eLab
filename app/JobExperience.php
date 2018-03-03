@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $end_day 結束日
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property-read null|string $date_range
  * @property-read \App\UserProfile $userProfile
  * @method static \Illuminate\Database\Eloquent\Builder|\App\JobExperience whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\JobExperience whereCreatedAt($value)
@@ -55,5 +56,37 @@ class JobExperience extends Model
     public function userProfile()
     {
         return $this->belongsTo(UserProfile::class);
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getDateRangeAttribute()
+    {
+        $startAt = '';
+        if ($this->start_year) {
+            $startAt .= $this->start_year;
+            if ($this->start_month) {
+                $startAt .= '-' . str_pad($this->start_month, 2, '0', STR_PAD_LEFT);
+                if ($this->start_day) {
+                    $startAt .= '-' . str_pad($this->start_day, 2, '0', STR_PAD_LEFT);
+                }
+            }
+        }
+        $endAt = '';
+        if ($this->end_year) {
+            $endAt .= $this->end_year;
+            if ($this->end_month) {
+                $endAt .= '-' . str_pad($this->end_month, 2, '0', STR_PAD_LEFT);
+                if ($this->end_day) {
+                    $endAt .= '-' . str_pad($this->end_day, 2, '0', STR_PAD_LEFT);
+                }
+            }
+        }
+        if ($startAt || $endAt) {
+            return '（' . $startAt . ' ~ ' . $endAt . '）';
+        }
+
+        return null;
     }
 }
