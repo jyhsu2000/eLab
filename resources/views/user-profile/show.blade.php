@@ -105,11 +105,11 @@
                         {{ $jobExperience->content }}{{ $jobExperience->date_range }}
                         @if(Laratrust::owns($userProfile) || Laratrust::can('user-profile.manage'))
                             <a href="{{ route('job-experience.edit', $jobExperience) }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-edit" aria-hidden="true"></i> 編輯
+                                <i class="fa fa-edit" aria-hidden="true" title="編輯"></i>
                             </a>
                             {!! Form::open(['route' => ['job-experience.destroy', $jobExperience], 'style' => 'display: inline', 'method' => 'DELETE', 'onSubmit' => "return confirm('確定要刪除嗎？');"]) !!}
                             <button type="submit" class="btn btn-danger btn-sm">
-                                <i class="fa fa-trash" aria-hidden="true"></i> 刪除
+                                <i class="fa fa-trash" aria-hidden="true" title="刪除"></i>
                             </button>
                             {!! Form::close() !!}
                         @endif
