@@ -17,7 +17,7 @@ class JobExperienceController extends Controller
     {
         $userProfile = UserProfile::find(request('user-profile'));
         //檢查有無權限管理指定個人資料
-        if (!\Laratrust::owns($userProfile) && !\Laratrust::can('user-profile.manage')) {
+        if (!$userProfile->has_permission) {
             return redirect()->route('user-profile.show', $userProfile)->with('warning', '無法編輯他人資料');
         }
 
@@ -33,7 +33,11 @@ class JobExperienceController extends Controller
      */
     public function store(Request $request)
     {
-        //TODO: 檢查有無權限管理指定個人資料
+        $userProfile = UserProfile::find(request('user_profile_id'));
+        //檢查有無權限管理指定個人資料
+        if (!$userProfile->has_permission) {
+            return redirect()->route('user-profile.show', $userProfile)->with('warning', '無法編輯他人資料');
+        }
         //TODO
     }
 
@@ -45,7 +49,11 @@ class JobExperienceController extends Controller
      */
     public function edit(JobExperience $jobExperience)
     {
-        //TODO: 檢查有無權限管理指定工作經歷
+        $userProfile = $jobExperience->userProfile;
+        //檢查有無權限管理指定個人資料
+        if (!$userProfile->has_permission) {
+            return redirect()->route('user-profile.show', $userProfile)->with('warning', '無法編輯他人資料');
+        }
         //TODO
     }
 
@@ -58,7 +66,11 @@ class JobExperienceController extends Controller
      */
     public function update(Request $request, JobExperience $jobExperience)
     {
-        //TODO: 檢查有無權限管理指定工作經歷
+        $userProfile = $jobExperience->userProfile;
+        //檢查有無權限管理指定個人資料
+        if (!$userProfile->has_permission) {
+            return redirect()->route('user-profile.show', $userProfile)->with('warning', '無法編輯他人資料');
+        }
         //TODO
     }
 
@@ -70,7 +82,11 @@ class JobExperienceController extends Controller
      */
     public function destroy(JobExperience $jobExperience)
     {
-        //TODO: 檢查有無權限管理指定工作經歷
+        $userProfile = $jobExperience->userProfile;
+        //檢查有無權限管理指定個人資料
+        if (!$userProfile->has_permission) {
+            return redirect()->route('user-profile.show', $userProfile)->with('warning', '無法編輯他人資料');
+        }
         //TODO
     }
 }

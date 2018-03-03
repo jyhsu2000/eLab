@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\Bnb\Laravel\Attachments\Attachment[] $attachments
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\ContactInfo[] $contactInfos
+ * @property-read bool $has_permission
  * @property-read null|string $photo_url
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\JobExperience[] $jobExperiences
  * @property-read \App\User|null $user
@@ -106,5 +107,15 @@ class UserProfile extends Model
         });
 
         return $photoUrl;
+    }
+
+    /**
+     * 檢查當前使用者有無其編輯權限
+     *
+     * @return bool
+     */
+    public function getHasPermissionAttribute()
+    {
+        return \Laratrust::owns($this) || \Laratrust::can('user-profile.manage');
     }
 }
