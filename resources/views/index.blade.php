@@ -89,12 +89,11 @@
                 <div class="container mt-2" style="padding-bottom: 60px">
                     <div class="row">
                         <div class="col-md-4">
-                            <div
-                                style="height: 100%; background: url('{{ $imageUrls['teacher_photo'] }}') no-repeat center top / contain">
-                            </div>
+                            <img src="{{ $imageUrls['teacher_photo'] }}" class="img-thumbnail">
+                            <h3 class="text-center text-border">{!! $teacher['name'] !!}</h3>
                         </div>
                         <div class="jumbotron col" style="min-height: 40vh; overflow:auto;">
-                            {!! $teacher !!}
+                            {!! $teacher['info'] !!}
                         </div>
                     </div>
                 </div>

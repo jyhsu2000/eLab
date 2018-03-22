@@ -53,11 +53,12 @@ class SettingController extends Controller
             'lab_name',
             'lab_full_name',
             'lab_intro',
-            'teacher',
+            'teacher_name',
+            'teacher_info',
         ];
         $htmlSettingItems = [
             'lab_intro',
-            'teacher',
+            'teacher_info',
         ];
         //更新設定
         foreach ($settingItems as $settingItem) {

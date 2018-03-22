@@ -35,7 +35,8 @@ class HomeController extends Controller
         }
 
         $labIntro = \Setting::get('lab_intro');
-        $teacher = \Setting::get('teacher');
+        $teacher['name'] = \Setting::get('teacher_name');
+        $teacher['info'] = \Setting::get('teacher_info');
 
         $members = UserProfile::whereInSchool(true)->get();
 

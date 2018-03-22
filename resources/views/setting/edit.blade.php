@@ -43,6 +43,7 @@
         </div>
         <div class="card-body">
             <h5 class="card-title">指導教授</h5>
+            {{ bs()->formGroup(bs()->text('teacher_name'))->label('姓名與職稱')->showAsRow() }}
             @if($fileUrl = optional($independentFiles->get('teacher_photo'))->file_url)
                 <div class="row form-group">
                     <label class="col-form-label col-sm-2" for="photo">原相片</label>
@@ -55,7 +56,7 @@
             @endif
             {{ bs()->formGroup(bs()->file('teacher_photo')->acceptImage())->label('相片')->helpText('若不打算更換，則無需選擇檔案')->showAsRow() }}
 
-            {{ bs()->formGroup(bs()->textarea('teacher')->attribute('rows', 10))->label('簡介')->showAsRow() }}
+            {{ bs()->formGroup(bs()->textarea('teacher_info')->attribute('rows', 10))->label('簡介')->showAsRow() }}
         </div>
         <div class="card-body">
             <div class="row">
