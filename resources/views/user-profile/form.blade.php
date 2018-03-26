@@ -24,7 +24,20 @@
 {{ bs()->formGroup(bs()->input('number', 'in_year')->placeholder('請填寫學年度（如學號開頭m04，入學年度為104）'))->label('入學年度')->showAsRow() }}
 {{ bs()->formGroup(bs()->input('number', 'graduate_year')->placeholder('請填寫學年度（如106學年度第二學期畢業，畢業年度為106）'))->label('畢業年度')->showAsRow() }}
 {{ bs()->formGroup(bs()->checkBox('in_school', '在學中'))->label('在學狀態')->showAsRow() }}
-{{ bs()->formGroup(bs()->select('type')->options(\App\UserProfile::getTypeOptions()))->label('身分')->showAsRow() }}
+<div class="row form-group">
+    <label class="col-form-label col-sm-2" for="type">身分</label>
+    <div class="col-sm-10">
+        <div class="input-group">
+            {{ bs()->text('type') }}
+            <div class="input-group-append">
+                <span class="input-group-text">快速填寫：</span>
+                @foreach(['教授', '碩士班', '博士班', '碩專班'] as $type)
+                    <button class="btn btn-outline-secondary" type="button" onclick="auto_fill_type('{{ $type }}')">{{ $type }}</button>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
 {{ bs()->formGroup(bs()->text('name')->required())->label('姓名')->showAsRow() }}
 {{ bs()->formGroup(bs()->text('nickname'))->label('暱稱')->showAsRow() }}
 {{ bs()->formGroup(bs()->textarea('info')->attribute('rows', 10))->label('個人簡介')->showAsRow() }}
@@ -55,5 +68,8 @@
     @parent
     <script>
         $('#user_id').select2();
+        var auto_fill_type = function(type){
+            $('#type').val(type);
+        }
     </script>
 @endsection
