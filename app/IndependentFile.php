@@ -35,7 +35,7 @@ class IndependentFile extends Model
     {
         //自動緩存一天
         $cacheKey = 'independent_file_' . $this->id . '_file_url_' . $this->updated_at->timestamp;
-        $fileUrl = \Cache::remember($cacheKey, 1440, function () {
+        $fileUrl = \Cache::rememberForever($cacheKey, function () {
             $attachment = $this->attachment('file');
             if (!$attachment) {
                 //cache不支援null，存false代替

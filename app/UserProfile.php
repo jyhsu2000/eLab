@@ -96,7 +96,7 @@ class UserProfile extends Model
     {
         //自動緩存一天
         $cacheKey = 'user_profile_' . $this->id . '_photo_' . $this->updated_at->timestamp;
-        $photoUrl = \Cache::remember($cacheKey, 1440, function () {
+        $photoUrl = \Cache::rememberForever($cacheKey, function () {
             $attachment = $this->attachment('photo');
             if (!$attachment) {
                 //cache不支援null，存false代替
