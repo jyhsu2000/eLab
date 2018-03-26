@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $in_year 入學年度
  * @property int|null $graduate_year 畢業年度
  * @property bool $in_school 在學中
- * @property string|null $type 類型
+ * @property string|null $type 身分
  * @property string|null $name 姓名
  * @property string|null $nickname 暱稱
  * @property string|null $info 個人簡介

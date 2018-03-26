@@ -104,7 +104,7 @@ class UserProfileDataTable extends DataTable
                 'title'   => '畢業年度',
                 'visible' => false,
             ],
-            'type'          => ['title' => '類型'],
+            'type'          => ['title' => '身分'],
             'name'          => ['title' => '姓名'],
             'nickname'      => [
                 'title'   => '暱稱',

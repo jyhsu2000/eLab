@@ -55,7 +55,7 @@
                 <dt class="col-4 col-md-3">在學狀態</dt>
                 <dd class="col-8 col-md-9">{{ $userProfile->in_school ? '在學中' : '非在學' }}</dd>
 
-                <dt class="col-4 col-md-3">類型</dt>
+                <dt class="col-4 col-md-3">身分</dt>
                 <dd class="col-8 col-md-9">{{ $userProfile->type }}</dd>
 
                 <dt class="col-4 col-md-3">姓名</dt>
