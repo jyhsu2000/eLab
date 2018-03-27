@@ -4,7 +4,9 @@
 [![Build Status](https://travis-ci.org/jyhsu2000/eLab.svg)](https://travis-ci.org/jyhsu2000/eLab)
 [![License](https://img.shields.io/github/license/jyhsu2000/eLab.svg)](https://raw.githubusercontent.com/jyhsu2000/eLab/master/LICENSE)
 
-## Required
+Website for lab which can be customize easily.
+
+## Requirement
 - PHP 7.1
 
 ## Framework
