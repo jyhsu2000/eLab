@@ -23,6 +23,11 @@ Route::resource('job-experience', 'JobExperienceController', [
     ],
 ]);
 
+//研究計畫
+Route::resource('research-project', 'ResearchProjectController')->except([
+    'show',
+]);
+
 //會員（須完成信箱驗證）
 Route::group(['middleware' => ['auth', 'email']], function () {
     //會員管理
