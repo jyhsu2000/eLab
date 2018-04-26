@@ -43,7 +43,7 @@ class JobExperienceController extends Controller
         $data = $this->handleRequest($request);
         $data['user_profile_id'] = $userProfile->id;
         //建立
-        $jobExperience = JobExperience::create($data);
+        JobExperience::create($data);
 
         return redirect()->route('user-profile.show', $userProfile)->with('success', '工作經歷已建立');
     }

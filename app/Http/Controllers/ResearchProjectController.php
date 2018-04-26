@@ -42,7 +42,7 @@ class ResearchProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param ResearchProjectRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(ResearchProjectRequest $request)
@@ -66,7 +66,7 @@ class ResearchProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param ResearchProjectRequest $request
      * @param  \App\ResearchProject $researchProject
      * @return \Illuminate\Http\Response
      */
