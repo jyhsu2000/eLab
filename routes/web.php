@@ -27,6 +27,26 @@ Route::resource('job-experience', 'JobExperienceController', [
 Route::resource('research-project', 'ResearchProjectController')->except([
     'show',
 ]);
+//學術活動 - 擔任國內外學術期刊編輯委員
+Route::resource('academic-event-journal-editor', 'AcademicEventJournalEditorController')->except([
+    'show',
+]);
+//學術活動 - 擔任國內外學術研討會議程委員
+Route::resource('academic-event-agenda-member', 'AcademicEventAgendaMemberController')->except([
+    'show',
+]);
+//學術活動 - 擔任國內外學術研討會議程主持人
+Route::resource('academic-event-seminar-host', 'AcademicEventSeminarHostController')->except([
+    'show',
+]);
+//學術活動 - 擔任國際學術期刊之論文評審委員
+Route::resource('academic-event-paper-committee', 'AcademicEventPaperCommitteeController')->except([
+    'show',
+]);
+//學術活動 - 應聘擔任國內重要委員會委員
+Route::resource('academic-event-committee-member', 'AcademicEventCommitteeMemberController')->except([
+    'show',
+]);
 
 //會員（須完成信箱驗證）
 Route::group(['middleware' => ['auth', 'email']], function () {
