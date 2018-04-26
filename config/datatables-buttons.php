@@ -57,7 +57,7 @@ return [
      * Default html builder parameters.
      */
     'parameters'    => [
-        'dom'     => 'Bfrtip',
+        'dom'     => "<'row'<'col-md-6'l><'col-md-6'f>><'row'<'col-md-12'rt>><'row'<'col-md-6'i><'col-md-6'p>>",
         'order'   => [[0, 'desc']],
         'buttons' => [
             'create',
