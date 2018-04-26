@@ -42,7 +42,7 @@ class AcademicEventCommitteeMemberController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param AcademicEventCommitteeMemberRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(AcademicEventCommitteeMemberRequest $request)
@@ -60,13 +60,13 @@ class AcademicEventCommitteeMemberController extends Controller
      */
     public function edit(AcademicEventCommitteeMember $academicEventCommitteeMember)
     {
-        return view('academic-event-committee-member.edit', compact($academicEventCommitteeMember));
+        return view('academic-event-committee-member.edit', compact('academicEventCommitteeMember'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param AcademicEventCommitteeMemberRequest $request
      * @param  \App\AcademicEventCommitteeMember $academicEventCommitteeMember
      * @return \Illuminate\Http\Response
      */
@@ -74,7 +74,7 @@ class AcademicEventCommitteeMemberController extends Controller
     {
         $academicEventCommitteeMember->update($request->all());
 
-        return redirect()->route('academic-event-committee-member.edit.index')->with('success', '紀錄已更新');
+        return redirect()->route('academic-event-committee-member.index')->with('success', '紀錄已更新');
     }
 
     /**

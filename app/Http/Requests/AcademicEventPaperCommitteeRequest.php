@@ -24,8 +24,7 @@ class AcademicEventPaperCommitteeRequest extends FormRequest
     public function rules()
     {
         return [
-            'committee_name' => 'required',
-            'date_range'     => 'nullable',
+            'journal_name' => 'required',
         ];
     }
 }

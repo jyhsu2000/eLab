@@ -42,7 +42,7 @@ class AcademicEventAgendaMemberController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param AcademicEventAgendaMemberRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(AcademicEventAgendaMemberRequest $request)
@@ -60,13 +60,13 @@ class AcademicEventAgendaMemberController extends Controller
      */
     public function edit(AcademicEventAgendaMember $academicEventAgendaMember)
     {
-        return view('academic-event-agenda-member.edit', compact($academicEventAgendaMember));
+        return view('academic-event-agenda-member.edit', compact('academicEventAgendaMember'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param AcademicEventAgendaMemberRequest $request
      * @param  \App\AcademicEventAgendaMember $academicEventAgendaMember
      * @return \Illuminate\Http\Response
      */

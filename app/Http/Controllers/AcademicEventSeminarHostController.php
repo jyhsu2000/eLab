@@ -42,7 +42,7 @@ class AcademicEventSeminarHostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param AcademicEventSeminarHostRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(AcademicEventSeminarHostRequest $request)
@@ -66,7 +66,7 @@ class AcademicEventSeminarHostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param AcademicEventSeminarHostRequest $request
      * @param  \App\AcademicEventSeminarHost $academicEventSeminarHost
      * @return \Illuminate\Http\Response
      */

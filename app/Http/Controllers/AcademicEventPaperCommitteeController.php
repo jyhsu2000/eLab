@@ -42,7 +42,7 @@ class AcademicEventPaperCommitteeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param AcademicEventPaperCommitteeRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(AcademicEventPaperCommitteeRequest $request)
@@ -66,7 +66,7 @@ class AcademicEventPaperCommitteeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param AcademicEventPaperCommitteeRequest $request
      * @param  \App\AcademicEventPaperCommittee $academicEventPaperCommittee
      * @return \Illuminate\Http\Response
      */
