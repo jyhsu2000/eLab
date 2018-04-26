@@ -92,8 +92,13 @@
                             <img src="{{ $imageUrls['teacher_photo'] }}" class="img-thumbnail">
                             <h3 class="text-center text-border">{!! $teacher['name'] !!}</h3>
                         </div>
-                        <div class="jumbotron col" style="min-height: 40vh; overflow:auto;">
-                            {!! $teacher['info'] !!}
+                        <div class="col">
+                            <div class="mb-2">
+                                <a href="{{ route('research-project.index') }}" class="btn btn-primary">研究計畫</a>
+                            </div>
+                            <div class="jumbotron" style="min-height: 40vh; overflow:auto;">
+                                {!! $teacher['info'] !!}
+                            </div>
                         </div>
                     </div>
                 </div>
