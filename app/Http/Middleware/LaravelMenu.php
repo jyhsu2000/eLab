@@ -28,6 +28,18 @@ class LaravelMenu
         Menu::make('right', function ($menu) {
             /* @var \Lavary\Menu\Builder $menu */
             $menu->add('成員清單', ['route' => 'user-profile.index'])->active('user-profile/*');
+            $menu->add('研究計畫', ['route' => 'research-project.index'])->active('research-project/*');
+            $academicEventMenu = $menu->add('學術活動');
+            $academicEventMenu->add('擔任國內外學術期刊編輯委員', ['route' => 'academic-event-journal-editor.index'])
+                ->active('academic-event-journal-editor/*');
+            $academicEventMenu->add('擔任國內外學術研討會議程委員', ['route' => 'academic-event-agenda-member.index'])
+                ->active('academic-event-agenda-member/*');
+            $academicEventMenu->add('擔任國內外學術研討會議程主持人', ['route' => 'academic-event-seminar-host.index'])
+                ->active('academic-event-seminar-host/*');
+            $academicEventMenu->add('擔任國際學術期刊之論文評審委員', ['route' => 'academic-event-paper-committee.index'])
+                ->active('academic-event-paper-committee/*');
+            $academicEventMenu->add('應聘擔任國內重要委員會委員', ['route' => 'academic-event-committee-member.index'])
+                ->active('academic-event-committee-member/*');
             //會員
             if (auth()->check()) {
                 if (!auth()->user()->is_confirmed) {
