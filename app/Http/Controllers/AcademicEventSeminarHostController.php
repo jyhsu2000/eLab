@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AcademicEventSeminarHost;
+use App\Http\Requests\AcademicEventSeminarHostRequest;
 use Illuminate\Http\Request;
 
 class AcademicEventSeminarHostController extends Controller
@@ -33,7 +34,7 @@ class AcademicEventSeminarHostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AcademicEventSeminarHostRequest $request)
     {
         //
     }
@@ -67,7 +68,7 @@ class AcademicEventSeminarHostController extends Controller
      * @param  \App\AcademicEventSeminarHost  $academicEventSeminarHost
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AcademicEventSeminarHost $academicEventSeminarHost)
+    public function update(AcademicEventSeminarHostRequest $request, AcademicEventSeminarHost $academicEventSeminarHost)
     {
         //
     }

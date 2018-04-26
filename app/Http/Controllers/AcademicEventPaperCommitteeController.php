@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AcademicEventPaperCommittee;
+use App\Http\Requests\AcademicEventPaperCommitteeRequest;
 use Illuminate\Http\Request;
 
 class AcademicEventPaperCommitteeController extends Controller
@@ -33,7 +34,7 @@ class AcademicEventPaperCommitteeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AcademicEventPaperCommitteeRequest $request)
     {
         //
     }
@@ -67,7 +68,7 @@ class AcademicEventPaperCommitteeController extends Controller
      * @param  \App\AcademicEventPaperCommittee  $academicEventPaperCommittee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AcademicEventPaperCommittee $academicEventPaperCommittee)
+    public function update(AcademicEventPaperCommitteeRequest $request, AcademicEventPaperCommittee $academicEventPaperCommittee)
     {
         //
     }

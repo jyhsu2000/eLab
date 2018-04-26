@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AcademicEventAgendaMember;
+use App\Http\Requests\AcademicEventAgendaMemberRequest;
 use Illuminate\Http\Request;
 
 class AcademicEventAgendaMemberController extends Controller
@@ -33,7 +34,7 @@ class AcademicEventAgendaMemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AcademicEventAgendaMemberRequest $request)
     {
         //
     }
@@ -67,7 +68,7 @@ class AcademicEventAgendaMemberController extends Controller
      * @param  \App\AcademicEventAgendaMember  $academicEventAgendaMember
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AcademicEventAgendaMember $academicEventAgendaMember)
+    public function update(AcademicEventAgendaMemberRequest $request, AcademicEventAgendaMember $academicEventAgendaMember)
     {
         //
     }
