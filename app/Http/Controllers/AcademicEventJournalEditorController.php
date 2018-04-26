@@ -9,7 +9,7 @@ use App\Http\Requests\AcademicEventJournalEditorRequest;
 class AcademicEventJournalEditorController extends Controller
 {
     /**
-     * ResearchProjectController constructor.
+     * AcademicEventJournalEditorController constructor.
      */
     public function __construct()
     {
