@@ -95,6 +95,21 @@
                         <div class="col">
                             <div class="mb-2">
                                 <a href="{{ route('research-project.index') }}" class="btn btn-primary">研究計畫</a>
+                                <a class="btn btn-primary dropdown-toggle" href="#" role="button"
+                                   id="AcademicEventMenuLink"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    學術活動
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="AcademicEventMenuLink">
+                                    <a class="dropdown-item" href="{{ route('academic-event-journal-editor.index') }}">擔任國內外學術期刊編輯委員</a>
+                                    <a class="dropdown-item" href="{{ route('academic-event-agenda-member.index') }}">擔任國內外學術研討會議程委員</a>
+                                    <a class="dropdown-item" href="{{ route('academic-event-seminar-host.index') }}">擔任國內外學術研討會議程主持人</a>
+                                    <a class="dropdown-item" href="{{ route('academic-event-paper-committee.index') }}">擔任國際學術期刊之論文評審委員</a>
+                                    <a class="dropdown-item"
+                                       href="{{ route('academic-event-committee-member.index') }}">應聘擔任國內重要委員會委員</a>
+                                </div>
+
                             </div>
                             <div class="jumbotron" style="min-height: 40vh; overflow:auto;">
                                 {!! $teacher['info'] !!}
@@ -107,6 +122,9 @@
         <div class="section" id="section-member">
             <div class="d-flex flex-column" style="min-height: 80%">
                 <h1 class="display-3 align-self-center text-border">實驗室成員</h1>
+                <div class="text-center">
+                    <a href="{{ route('user-profile.index') }}" class="btn btn-primary">檢視所有成員</a>
+                </div>
                 <div class="container-fluid mt-2" style="padding-bottom: 60px">
                     <div class="main-carousel">
                         @foreach($members as $member)
