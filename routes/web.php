@@ -51,6 +51,10 @@ Route::resource('academic-event-committee-member', 'AcademicEventCommitteeMember
 Route::resource('academic-speech', 'AcademicSpeechController')->except([
     'show',
 ]);
+//學術活動 - 學術榮譽
+Route::resource('academic-honor', 'AcademicHonorController')->except([
+    'show',
+]);
 
 //會員（須完成信箱驗證）
 Route::group(['middleware' => ['auth', 'email']], function () {

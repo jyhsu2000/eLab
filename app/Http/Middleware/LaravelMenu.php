@@ -42,6 +42,8 @@ class LaravelMenu
                 ->active('academic-event-committee-member/*');
             $academicEventMenu->add('學術演講', ['route' => 'academic-speech.index'])
                 ->active('academic-speech/*');
+            $academicEventMenu->add('學術榮耀', ['route' => 'academic-honor.index'])
+                ->active('academic-honor/*');
             //會員
             if (auth()->check()) {
                 if (!auth()->user()->is_confirmed) {
