@@ -40,6 +40,8 @@ class LaravelMenu
                 ->active('academic-event-paper-committee/*');
             $academicEventMenu->add('應聘擔任國內重要委員會委員', ['route' => 'academic-event-committee-member.index'])
                 ->active('academic-event-committee-member/*');
+            $academicEventMenu->add('學術演講', ['route' => 'academic-speech.index'])
+                ->active('academic-speech/*');
             //會員
             if (auth()->check()) {
                 if (!auth()->user()->is_confirmed) {
