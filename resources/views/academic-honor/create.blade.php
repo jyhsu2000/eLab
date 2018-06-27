@@ -4,7 +4,7 @@
 
 @section('buttons')
     <a href="{{ route('academic-honor.index') }}" class="btn btn-secondary">
-        <i class="fa fa-arrow-left" aria-hidden="true"></i> 學術榮耀
+        <i class="fa fa-arrow-left" aria-hidden="true"></i> 學術榮譽
     </a>
 @endsection
 

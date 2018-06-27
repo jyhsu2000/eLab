@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', '學術榮耀')
+@section('title', '學術榮譽')
 
 @section('buttons')
     @if(Laratrust::can('setting.manage'))
