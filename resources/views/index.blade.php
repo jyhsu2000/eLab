@@ -108,6 +108,8 @@
                                     <a class="dropdown-item" href="{{ route('academic-event-paper-committee.index') }}">擔任國際學術期刊之論文評審委員</a>
                                     <a class="dropdown-item"
                                        href="{{ route('academic-event-committee-member.index') }}">應聘擔任國內重要委員會委員</a>
+                                    <a class="dropdown-item" href="{{ route('academic-speech.index') }}">學術演講</a>
+                                    <a class="dropdown-item" href="{{ route('academic-honor.index') }}">學術榮譽</a>
                                 </div>
 
                             </div>
