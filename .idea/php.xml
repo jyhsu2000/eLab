@@ -125,6 +125,7 @@
       <path value="$PROJECT_DIR$/vendor/anlutro/l4-settings" />
       <path value="$PROJECT_DIR$/vendor/mews/purifier" />
       <path value="$PROJECT_DIR$/vendor/ezyang/htmlpurifier" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
     </include_path>
   </component>
   <component name="PhpInterpreters">
