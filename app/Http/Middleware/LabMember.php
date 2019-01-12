@@ -18,7 +18,7 @@ class LabMember
     {
         /** @var User $user */
         $user = auth()->user();
-        if (!$user->userProfile && !\Laratrust::can('lab-member.bypass')) {
+        if (!$user->is_member && !\Laratrust::can('lab-member.bypass')) {
             return back()->with('warning', '限實驗室成員進入');
         }
 

@@ -23,6 +23,7 @@ use Laratrust\Traits\LaratrustUserTrait;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read bool $is_confirmed
+ * @property-read bool $is_member
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Permission[] $permissions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Role[] $roles
@@ -90,6 +91,20 @@ class User extends Authenticatable
     public function getIsConfirmedAttribute()
     {
         return !empty($this->confirm_at);
+    }
+
+    /**
+     * 是否為實驗室成員
+     *
+     * @return bool
+     */
+    public function getIsMemberAttribute()
+    {
+        if (!$this->userProfile) {
+            return false;
+        }
+
+        return $this->userProfile->is_member;
     }
 
     public function userProfile()
