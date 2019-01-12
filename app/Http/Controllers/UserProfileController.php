@@ -20,6 +20,8 @@ class UserProfileController extends Controller
         $this->middleware('permission:user-profile.manage', ['only' => [
             'create',
             'store',
+            'edit',
+            'update',
             'destroy',
         ]]);
     }
@@ -130,9 +132,6 @@ class UserProfileController extends Controller
      */
     public function edit(UserProfile $userProfile)
     {
-        if (!\Laratrust::owns($userProfile) && !\Laratrust::can('user-profile.manage')) {
-            return redirect()->route('user-profile.show', $userProfile)->with('warning', '無法編輯他人資料');
-        }
         $contactTypes = ContactType::all();
         $contactInfos = $userProfile->contactInfos->keyBy('contact_type_id');
 
@@ -153,10 +152,6 @@ class UserProfileController extends Controller
         UserProfile $userProfile,
         UserProfileService $userProfileService
     ) {
-        if (!\Laratrust::can('user-profile.manage')) {
-            //無管理權限者，禁止修改成員對應使用者
-            $request->merge(['user_id' => $userProfile->user_id]);
-        }
         $request->merge([
             'is_member' => $request->exists('is_member'),
             'in_school' => $request->exists('in_school'),
