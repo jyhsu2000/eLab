@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property int|null $user_id 使用者
+ * @property bool $is_member 是否為實驗室成員
  * @property int|null $in_year 入學年度
  * @property int|null $graduate_year 畢業年度
  * @property bool $in_school 在學中
@@ -17,20 +18,24 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $name 姓名
  * @property string|null $nickname 暱稱
  * @property string|null $info 個人簡介
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\Bnb\Laravel\Attachments\Attachment[] $attachments
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\ContactInfo[] $contactInfos
  * @property-read bool $has_permission
  * @property-read null|string $photo_url
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\JobExperience[] $jobExperiences
  * @property-read \App\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereGraduateYear($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereInSchool($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereInYear($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereInfo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereIsMember($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereNickname($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserProfile whereType($value)
@@ -44,6 +49,7 @@ class UserProfile extends Model
 
     protected $fillable = [
         'user_id',
+        'is_member',
         'in_year',
         'graduate_year',
         'in_school',
@@ -63,6 +69,7 @@ class UserProfile extends Model
     ];
 
     protected $casts = [
+        'is_member' => 'boolean',
         'in_school' => 'boolean',
     ];
 
