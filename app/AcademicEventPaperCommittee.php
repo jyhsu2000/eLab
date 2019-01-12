@@ -9,8 +9,11 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property string $journal_name 期刊名稱
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\AcademicEventPaperCommittee newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\AcademicEventPaperCommittee newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\AcademicEventPaperCommittee query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\AcademicEventPaperCommittee whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\AcademicEventPaperCommittee whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\AcademicEventPaperCommittee whereJournalName($value)

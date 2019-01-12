@@ -12,10 +12,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $contact_type_id 聯絡資料類型
  * @property string $content 內容
  * @property bool $is_public 公開顯示
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\ContactType $contactType
  * @property-read \App\UserProfile $userProfile
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactInfo newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactInfo newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactInfo query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactInfo whereContactTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactInfo whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactInfo whereCreatedAt($value)

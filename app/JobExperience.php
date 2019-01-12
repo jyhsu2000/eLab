@@ -17,10 +17,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $end_year 結束年
  * @property int|null $end_month 結束月
  * @property int|null $end_day 結束日
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read null|string $date_range
  * @property-read \App\UserProfile $userProfile
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\JobExperience newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\JobExperience newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\JobExperience query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\JobExperience whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\JobExperience whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\JobExperience whereEndDay($value)

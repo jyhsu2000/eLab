@@ -12,8 +12,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $job 擔任工作
  * @property string|null $date_range 起迄年月
  * @property string|null $subsidy_agency 補助機構
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ResearchProject newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ResearchProject newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ResearchProject query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ResearchProject whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ResearchProject whereDateRange($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ResearchProject whereId($value)

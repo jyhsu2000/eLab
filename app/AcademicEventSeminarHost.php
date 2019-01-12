@@ -11,8 +11,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $agenda_name 會議名稱
  * @property string|null $date 會議時間
  * @property string|null $location 會議地點
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\AcademicEventSeminarHost newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\AcademicEventSeminarHost newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\AcademicEventSeminarHost query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\AcademicEventSeminarHost whereAgendaName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\AcademicEventSeminarHost whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\AcademicEventSeminarHost whereDate($value)

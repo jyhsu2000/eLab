@@ -11,9 +11,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name 名稱
  * @property string $icon_class 圖標class
  * @property bool $is_url 是否為網址欄位
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\ContactInfo[] $contactInfos
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactType newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactType newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactType query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactType whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactType whereIconClass($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactType whereId($value)

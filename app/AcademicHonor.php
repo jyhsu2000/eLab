@@ -9,8 +9,11 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property string $award_record 獲獎紀錄
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\AcademicHonor newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\AcademicHonor newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\AcademicHonor query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\AcademicHonor whereAwardRecord($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\AcademicHonor whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\AcademicHonor whereId($value)

@@ -10,10 +10,13 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property string $name 名稱
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\Bnb\Laravel\Attachments\Attachment[] $attachments
  * @property-read null|string $file_url
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\IndependentFile newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\IndependentFile newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\IndependentFile query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\IndependentFile whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\IndependentFile whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\IndependentFile whereName($value)
