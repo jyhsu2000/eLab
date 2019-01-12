@@ -62,7 +62,6 @@
 @section('js')
     @parent
     <script>
-        $('#user_id').select2();
         var auto_fill_type = function(type){
             $('#type').val(type);
         }
