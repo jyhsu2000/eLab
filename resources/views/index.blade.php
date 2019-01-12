@@ -125,7 +125,7 @@
             <div class="d-flex flex-column" style="min-height: 80%">
                 <h1 class="display-3 align-self-center text-border">實驗室成員</h1>
                 <div class="text-center">
-                    <a href="{{ route('user-profile.index') }}" class="btn btn-primary">檢視所有成員</a>
+                    <a href="{{ route('member.index') }}" class="btn btn-primary">檢視所有成員</a>
                 </div>
                 <div class="container-fluid mt-2" style="padding-bottom: 60px">
                     <div class="main-carousel">
@@ -146,7 +146,7 @@
                                     </div>
                                     <div class="card-block text-center">
                                         <h4 class="card-title">
-                                            <a href="{{ route('user-profile.show', $member) }}">{{ $member->name }}</a>
+                                            <a href="{{ route('member.show', $member) }}">{{ $member->name }}</a>
                                         </h4>
                                         @if($member->nickname)
                                             <h4 class="card-title">

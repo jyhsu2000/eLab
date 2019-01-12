@@ -14,5 +14,5 @@
             <i class="fas fa-exclamation-triangle mr-2"></i>此資料目前不會顯示於網站上，請告知管理員將您標示為<strong>實驗室成員</strong>
         </div>
     @endif
-    @include('user-profile.info')
+    @include('user-profile.info', ['jobEditMode' => true])
 @endsection

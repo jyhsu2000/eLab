@@ -55,7 +55,8 @@
         <hr>
         <h4 class="card-title">
             工作經歷/任職公司
-            @if(Laratrust::owns($userProfile) || Laratrust::can('user-profile.manage'))
+            @php($jobEditMode = isset($jobEditMode) ? $jobEditMode : false)
+            @if($jobEditMode && (Laratrust::owns($userProfile) || Laratrust::can('user-profile.manage')))
                 <a href="{{ route('job-experience.create', ['user-profile' => $userProfile->id]) }}"
                    class="btn btn-primary btn-sm">
                     <i class="fa fa-plus-circle" aria-hidden="true"></i> 新增
@@ -69,7 +70,7 @@
                         <i class="fas fa-lock text-muted" title="僅實驗室成員可見"></i>
                     @endif
                     {{ $jobExperience->content }}{{ $jobExperience->date_range }}
-                    @if(Laratrust::owns($userProfile) || Laratrust::can('user-profile.manage'))
+                    @if($jobEditMode && (Laratrust::owns($userProfile) || Laratrust::can('user-profile.manage')))
                         <a href="{{ route('job-experience.edit', $jobExperience) }}" class="btn btn-primary btn-sm">
                             <i class="fa fa-edit" aria-hidden="true" title="編輯"></i>
                         </a>

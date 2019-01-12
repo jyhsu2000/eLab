@@ -12,20 +12,6 @@ use App\UserProfile;
 class UserProfileController extends Controller
 {
     /**
-     * UserProfileController constructor.
-     */
-    public function __construct()
-    {
-        $this->middleware('permission:user-profile.manage', ['only' => [
-            'create',
-            'store',
-            'edit',
-            'update',
-            'destroy',
-        ]]);
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @param UserProfileDataTable $dataTable
@@ -105,17 +91,8 @@ class UserProfileController extends Controller
      */
     public function show(UserProfile $userProfile)
     {
-        $contactInfoQuery = $userProfile->contactInfos();
-        $user = auth()->user();
-        if (!\Laratrust::can('user-profile.manage') && !optional($user)->userProfile) {
-            $contactInfoQuery->where('is_public', true);
-        }
-        $contactInfos = $contactInfoQuery->with('contactType')->get();
-
+        $contactInfos = $userProfile->contactInfos()->with('contactType')->get();
         $jobExperiences = $userProfile->jobExperiences;
-        if (!\Laratrust::can('user-profile.manage') && !optional($user)->userProfile) {
-            $jobExperiences = $userProfile->jobExperiences()->where('is_public', true)->get();
-        }
 
         return view('user-profile.show', compact('userProfile', 'contactInfos', 'jobExperiences'));
     }

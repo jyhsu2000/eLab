@@ -52,5 +52,5 @@
             </div>
         </div>
     @endif
-    @include('user-profile.info')
+    @include('user-profile.info', ['jobEditMode' => true])
 @endsection

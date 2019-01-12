@@ -15,7 +15,6 @@
 Route::get('/', 'HomeController@index')->name('index');
 
 //成員清單
-Route::resource('user-profile', 'UserProfileController');
 Route::resource('member', 'MemberController', [
     'only' => [
         'index',
@@ -94,7 +93,10 @@ Route::group(['middleware' => ['auth', 'email']], function () {
         Route::get('setting', 'SettingController@edit')->name('setting.edit');
         Route::patch('setting', 'SettingController@update')->name('setting.update');
     });
-
+    //成員管理
+    Route::group(['middleware' => 'permission:user-profile.manage'], function () {
+        Route::resource('user-profile', 'UserProfileController');
+    });
     //成員資料
     Route::group(['prefix' => 'my-user-profile'], function () {
         Route::get('/', 'MyUserProfileController@index')->name('my-user-profile.index');

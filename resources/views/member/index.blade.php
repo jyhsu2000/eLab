@@ -4,7 +4,7 @@
 
 @section('buttons')
     @if(Laratrust::can('user-profile.manage'))
-        <a href="{{ route('user-profile.index') }}" class="btn btn-secondary">
+        <a href="{{ route('user-profile.index') }}" class="btn btn-primary">
             <i class="fas fa-wrench"></i> 成員管理
         </a>
     @endif
