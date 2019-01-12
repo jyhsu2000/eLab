@@ -6,9 +6,9 @@ use App\ContactInfo;
 use App\ContactType;
 use App\DataTables\UserProfileDataTable;
 use App\Http\Requests\UserProfileRequest;
+use App\Services\UserProfileService;
 use App\User;
 use App\UserProfile;
-use Illuminate\Http\UploadedFile;
 
 class UserProfileController extends Controller
 {
@@ -55,10 +55,11 @@ class UserProfileController extends Controller
      * Store a newly created resource in storage.
      *
      * @param UserProfileRequest $request
+     * @param UserProfileService $userProfileService
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
-    public function store(UserProfileRequest $request)
+    public function store(UserProfileRequest $request, UserProfileService $userProfileService)
     {
         $request->merge([
             'is_member' => $request->exists('is_member'),
@@ -74,7 +75,7 @@ class UserProfileController extends Controller
         //新相片
         $photoFile = $request->file('photo');
         if ($photoFile) {
-            $this->attachUploadedPhoto($userProfile, $photoFile);
+            $userProfileService->attachUploadedPhoto($userProfile, $photoFile);
         }
 
         //聯絡資訊
@@ -143,11 +144,15 @@ class UserProfileController extends Controller
      *
      * @param UserProfileRequest $request
      * @param  \App\UserProfile $userProfile
+     * @param UserProfileService $userProfileService
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
-    public function update(UserProfileRequest $request, UserProfile $userProfile)
-    {
+    public function update(
+        UserProfileRequest $request,
+        UserProfile $userProfile,
+        UserProfileService $userProfileService
+    ) {
         if (!\Laratrust::can('user-profile.manage')) {
             //無管理權限者，禁止修改成員對應使用者
             $request->merge(['user_id' => $userProfile->user_id]);
@@ -174,7 +179,7 @@ class UserProfileController extends Controller
         }
         //新照片
         if ($photoFile) {
-            $this->attachUploadedPhoto($userProfile, $photoFile);
+            $userProfileService->attachUploadedPhoto($userProfile, $photoFile);
         }
 
         //聯絡資訊
@@ -212,32 +217,5 @@ class UserProfileController extends Controller
         $userProfile->delete();
 
         return redirect()->route('user-profile.index')->with('success', '成員已刪除');
-    }
-
-    /**
-     * @param UserProfile $userProfile
-     * @param UploadedFile $uploadedFile
-     * @throws \Exception
-     */
-    private function attachUploadedPhoto(UserProfile $userProfile, UploadedFile $uploadedFile)
-    {
-        //建立Image
-        $image = \Image::make($uploadedFile->getRealPath());
-        //暫存路徑
-        $tmpPath = sys_get_temp_dir() . '/' . $uploadedFile->getClientOriginalName();
-        //調整圖片大小
-        $image->resize(600, 600, function ($constraint) {
-            /** @var \Intervention\Image\Constraint $constraint */
-            //照比例
-            $constraint->aspectRatio();
-            //防止放大
-            $constraint->upsize();
-        })->save($tmpPath);
-        //附加新相片
-        $userProfile->attach($tmpPath, [
-            'key' => 'photo',
-        ]);
-        //更新updated_at，避免photo吃到緩存
-        $userProfile->touch();
     }
 }
