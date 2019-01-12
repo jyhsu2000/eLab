@@ -89,6 +89,12 @@ Route::group(['middleware' => ['auth', 'email']], function () {
         Route::patch('setting', 'SettingController@update')->name('setting.update');
     });
 
+    //成員資料
+    Route::group(['prefix' => 'my-user-profile'], function () {
+        Route::get('/', 'MyUserProfileController@index')->name('my-user-profile.index');
+        Route::get('edit', 'MyUserProfileController@createOrEdit')->name('my-user-profile.create-or-edit');
+        Route::get('update', 'MyUserProfileController@storeOrUpdate')->name('my-user-profile.store-or-update');
+    });
     //權限：限實驗室成員進入
     Route::group(['middleware' => 'lab-member'], function () {
         //
