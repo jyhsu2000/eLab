@@ -12,6 +12,7 @@ $factory->define(\App\UserProfile::class, function (Faker $faker) {
 
     return [
         'user_id'       => $userId,
+        'is_member'     => $faker->boolean,
         'in_year'       => $inYear,
         'graduate_year' => $graduateYear,
         'in_school'     => $faker->boolean,
