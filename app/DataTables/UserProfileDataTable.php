@@ -31,6 +31,12 @@ class UserProfileDataTable extends DataTable
                 /** @var UserProfile $userProfile */
                 return view('user-profile.datatables.name', compact('userProfile'))->render();
             })
+            ->editColumn('is_member', function ($userProfile) {
+                /** @var UserProfile $userProfile */
+                return $userProfile->is_member
+                    ? '<i class="fas fa-check fa-fw text-success"></i>'
+                    : '<i class="fas fa-times fa-fw text-danger"></i>';
+            })
             ->editColumn('contact', function ($userProfile) {
                 /** @var UserProfile $userProfile */
                 return view('user-profile.datatables.contact', compact('userProfile'))->render();
@@ -110,6 +116,7 @@ class UserProfileDataTable extends DataTable
                 'title'   => '暱稱',
                 'visible' => false,
             ],
+            'is_member'     => ['title' => '成員'],
             'contact'       => [
                 'title'     => '聯絡資訊',
                 'orderable' => false,
