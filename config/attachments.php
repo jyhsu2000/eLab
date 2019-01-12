@@ -10,7 +10,7 @@ return [
     | Used for local storage only as other storage should define their public URL.
     |
     */
-    'routes'            => [
+    'routes'        => [
         'publish'        => true,
         'prefix'         => 'attachments',
         'middleware'     => 'web',
@@ -32,7 +32,7 @@ return [
     | App\Namespace\ClassName@method
     |
     */
-    'uuid_provider'     => 'uuid_v4_base36',
+    'uuid_provider' => 'uuid_v4_base36',
 
     /*
     |--------------------------------------------------------------------------
@@ -44,7 +44,7 @@ return [
     | - Dropzone delete can check for CSRF token match (set on upload)
     |
     */
-    'behaviors'         => [
+    'behaviors'     => [
         'cascade_delete'      => env('ATTACHMENTS_CASCADE_DELETE', true),
         'dropzone_check_csrf' => env('ATTACHMENTS_DROPZONE_CHECK_CSRF', true),
     ],
@@ -55,9 +55,12 @@ return [
     |--------------------------------------------------------------------------
     |
     | This allow to extend the attachment model with new columns
+    | `dropzone_attributes` holds the public fields returned after a successful upload via DropzoneController
     |
     */
-    'attributes'        => ['title', 'description', 'key', 'disk', 'filepath', 'group'],
+    'attributes'    => ['title', 'description', 'key', 'disk', 'filepath', 'group'],
+
+    'dropzone_attributes' => ['uuid', 'url', 'filename', 'filetype', 'filesize', 'title', 'description', 'key', 'group'],
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +70,19 @@ return [
     | Defines the directory prefix where new attachment files are stored
     |
     */
-    'storage_directory' => [
+    'storage_directory'   => [
         'prefix' => rtrim(env('ATTACHMENTS_STORAGE_DIRECTORY_PREFIX', 'attachments'), '/'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Database configuration
+    |--------------------------------------------------------------------------
+    |
+    | Allows to set the database connection name for the module's models
+    |
+    */
+    'database'            => [
+        'connection' => env('ATTACHMENTS_DATABASE_CONNECTION'),
     ],
 ];

@@ -10,7 +10,7 @@ return [
          */
         'name' => config('app.name'),
 
-        'source'             => [
+        'source'                   => [
 
             'files'     => [
 
@@ -41,6 +41,21 @@ return [
             /*
              * The names of the connections to the databases that should be backed up
              * MySQL, PostgreSQL, SQLite and Mongo databases are supported.
+             *
+             * The content of the database dump may be customized for each connection
+             * by adding a 'dump' key to the connection settings in config/database.php.
+             * E.g.
+             * 'mysql' => [
+             *       ...
+             *      'dump' => [
+             *           'excludeTables' => [
+             *                'table_to_exclude_from_backup',
+             *                'another_table_to_exclude'
+             *            ]
+             *       ]
+             * ],
+             *
+             * For a complete list of available customization options, see https://github.com/spatie/db-dumper
              */
             'databases' => [
                 'mysql',
@@ -48,11 +63,19 @@ return [
         ],
 
         /*
-         * The database dump can be gzipped to decrease diskspace usage.
+         * The database dump can be compressed to decrease diskspace usage.
+         *
+         * Out of the box Laravel-backup supplies
+         * Spatie\DbDumper\Compressors\GzipCompressor::class.
+         *
+         * You can also create custom compressor. More info on that here:
+         * https://github.com/spatie/db-dumper#using-compression
+         *
+         * If you do not want any compressor at all, set it to null.
          */
-        'gzip_database_dump' => false,
+        'database_dump_compressor' => null,
 
-        'destination' => [
+        'destination'         => [
 
             /*
              * The filename prefix used for the backup zip file.
@@ -66,6 +89,11 @@ return [
                 'local',
             ],
         ],
+
+        /*
+         * The directory where the temporary files will be stored.
+         */
+        'temporary_directory' => storage_path('app/backup-temp'),
     ],
 
     /*
@@ -103,6 +131,11 @@ return [
              * If this is set to null the default channel of the webhook will be used.
              */
             'channel'     => null,
+
+            'username' => null,
+
+            'icon' => null,
+
         ],
     ],
 
