@@ -60,7 +60,10 @@ class UserProfileController extends Controller
      */
     public function store(UserProfileRequest $request)
     {
-        $request->merge(['in_school' => $request->exists('in_school')]);
+        $request->merge([
+            'is_member' => $request->exists('is_member'),
+            'in_school' => $request->exists('in_school'),
+        ]);
         $userProfile = UserProfile::create($request->all());
         //清除其他屬於該User的UserProfile的user_id，確保一對一
         $userId = $request->get('user_id');
@@ -149,7 +152,10 @@ class UserProfileController extends Controller
             //無管理權限者，禁止修改成員對應使用者
             $request->merge(['user_id' => $userProfile->user_id]);
         }
-        $request->merge(['in_school' => $request->exists('in_school')]);
+        $request->merge([
+            'is_member' => $request->exists('is_member'),
+            'in_school' => $request->exists('in_school'),
+        ]);
         $userProfile->update($request->all());
         //清除其他屬於該User的UserProfile的user_id，確保一對一
         $userId = $request->get('user_id');

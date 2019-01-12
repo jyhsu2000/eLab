@@ -46,6 +46,15 @@
                     </dd>
                 @endif
 
+                <dt class="col-4 col-md-3">實驗室成員</dt>
+                <dd class="col-8 col-md-9">
+                    @if($userProfile->is_member)
+                        <i class="fas fa-check text-success"></i>
+                    @else
+                        <i class="fas fa-times text-danger"></i>
+                    @endif
+                </dd>
+
                 <dt class="col-4 col-md-3">入學年度</dt>
                 <dd class="col-8 col-md-9">{{ $userProfile->in_year }}</dd>
 

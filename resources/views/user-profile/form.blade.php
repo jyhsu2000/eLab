@@ -3,6 +3,7 @@
 @else
     {{ bs()->formGroup(bs()->select('user_id')->options(\App\User::getOptions())->disabled())->label('使用者')->showAsRow() }}
 @endif
+{{ bs()->formGroup(bs()->checkBox('is_member', '該成員為實驗室成員'))->label('實驗室成員')->showAsRow() }}
 <div class="alert alert-warning">
     請注意，以下項目資訊皆為公開資訊，將直接顯示於網站
 </div>
