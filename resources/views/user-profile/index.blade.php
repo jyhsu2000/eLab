@@ -8,7 +8,7 @@
             <i class="fa fa-plus-circle" aria-hidden="true"></i> 建立成員
         </a>
     @endif
-    @if($user)
+    @if(Auth::check())
         <a href="{{ route('my-user-profile.index') }}" class="btn btn-primary">
             <i class="fa fa-user" aria-hidden="true"></i> 我的資料
         </a>
