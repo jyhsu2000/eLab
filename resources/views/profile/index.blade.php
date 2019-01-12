@@ -36,6 +36,9 @@
                         @if($user->userProfile->nickname)
                             （{{ $user->userProfile->nickname }}）
                         @endif
+                        <a href="{{ route('my-user-profile.create-or-edit') }}" class="btn btn-primary btn-sm">
+                            <i class="fa fa-edit" aria-hidden="true"></i> 編輯資料
+                        </a>
                     @else
                         <span class="text-muted">未連結</span>
                     @endif

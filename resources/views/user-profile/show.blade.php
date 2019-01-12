@@ -6,12 +6,15 @@
     <a href="{{ route('user-profile.index') }}" class="btn btn-secondary">
         <i class="fa fa-arrow-left" aria-hidden="true"></i> 成員清單
     </a>
-    @if(Laratrust::owns($userProfile) || Laratrust::can('user-profile.manage'))
-        <a href="{{ route('user-profile.edit', $userProfile) }}" class="btn btn-primary">
-            <i class="fa fa-edit" aria-hidden="true"></i> 編輯
+    @if(Laratrust::owns($userProfile))
+        <a href="{{ route('my-user-profile.create-or-edit') }}" class="btn btn-primary">
+            <i class="fa fa-edit" aria-hidden="true"></i> 編輯資料
         </a>
     @endif
     @if(Laratrust::can('user-profile.manage'))
+        <a href="{{ route('user-profile.edit', $userProfile) }}" class="btn btn-primary">
+            <i class="fa fa-edit" aria-hidden="true"></i> 編輯
+        </a>
         {!! Form::open(['route' => ['user-profile.destroy', $userProfile], 'style' => 'display: inline', 'method' => 'DELETE', 'onSubmit' => "return confirm('確定要刪除嗎？');"]) !!}
         <button type="submit" class="btn btn-danger">
             <i class="fa fa-trash" aria-hidden="true"></i> 刪除
