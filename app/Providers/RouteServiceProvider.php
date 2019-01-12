@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\UserProfile;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Route;
 
@@ -26,6 +27,8 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+
+        Route::model('member', UserProfile::class);
     }
 
     /**

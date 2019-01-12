@@ -4,7 +4,7 @@
 
 @section('buttons')
     <a href="{{ route('user-profile.index') }}" class="btn btn-secondary">
-        <i class="fa fa-arrow-left" aria-hidden="true"></i> 成員清單
+        <i class="fa fa-arrow-left" aria-hidden="true"></i> 成員管理
     </a>
 @endsection
 

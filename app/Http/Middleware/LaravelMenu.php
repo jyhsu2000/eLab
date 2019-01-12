@@ -27,7 +27,7 @@ class LaravelMenu
         //右側
         Menu::make('right', function ($menu) {
             /* @var \Lavary\Menu\Builder $menu */
-            $menu->add('成員清單', ['route' => 'user-profile.index'])->active('user-profile/*');
+            $menu->add('成員清單', ['route' => 'member.index'])->active('member/*');
             $menu->add('研究計畫', ['route' => 'research-project.index'])->active('research-project/*');
             $academicEventMenu = $menu->add('學術活動', 'javascript:void(0)');
             $academicEventMenu->add('擔任國內外學術期刊編輯委員', ['route' => 'academic-event-journal-editor.index'])
@@ -57,6 +57,10 @@ class LaravelMenu
 
                     if (Laratrust::can(['user.manage', 'user.view'])) {
                         $adminMenu->add('會員清單', ['route' => 'user.index'])->active('user/*');
+                    }
+
+                    if (Laratrust::can('user-profile.manage')) {
+                        $adminMenu->add('成員管理', ['route' => 'user-profile.index'])->active('user-profile/*');
                     }
 
                     if (Laratrust::can('role.manage')) {

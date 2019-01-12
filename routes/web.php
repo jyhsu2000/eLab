@@ -16,6 +16,12 @@ Route::get('/', 'HomeController@index')->name('index');
 
 //成員清單
 Route::resource('user-profile', 'UserProfileController');
+Route::resource('member', 'MemberController', [
+    'only' => [
+        'index',
+        'show',
+    ],
+]);
 Route::resource('job-experience', 'JobExperienceController', [
     'except' => [
         'index',
