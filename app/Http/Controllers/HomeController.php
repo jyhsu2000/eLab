@@ -38,7 +38,7 @@ class HomeController extends Controller
         $teacher['name'] = \Setting::get('teacher_name');
         $teacher['info'] = \Setting::get('teacher_info');
 
-        $members = UserProfile::whereInSchool(true)->get();
+        $members = UserProfile::whereInSchool(true)->whereIsMember(true)->get();
 
         return view('index', compact('imageUrls', 'labIntro', 'teacher', 'members'));
     }
