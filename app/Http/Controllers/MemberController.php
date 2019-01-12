@@ -15,7 +15,6 @@ class MemberController extends Controller
      */
     public function index(MemberDataTable $dataTable)
     {
-
         return $dataTable->render('member.index');
     }
 
