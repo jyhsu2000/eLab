@@ -33,7 +33,7 @@ class IndependentFile extends Model
      */
     public function getFileUrlAttribute()
     {
-        //自動緩存一天
+        //自動緩存
         $cacheKey = 'independent_file_' . $this->id . '_file_url_' . $this->updated_at->timestamp;
         $fileUrl = \Cache::rememberForever($cacheKey, function () {
             $attachment = $this->attachment('file');

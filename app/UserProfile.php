@@ -86,7 +86,7 @@ class UserProfile extends Model
      */
     public function getPhotoUrlAttribute()
     {
-        //自動緩存一天
+        //自動緩存
         $cacheKey = 'user_profile_' . $this->id . '_photo_' . $this->updated_at->timestamp;
         $photoUrl = \Cache::rememberForever($cacheKey, function () {
             $attachment = $this->attachment('photo');
