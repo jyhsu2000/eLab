@@ -56,7 +56,6 @@ class MyUserProfileController extends Controller
         $user = \Auth::user();
         $request->request->remove('user_id');
         $request->merge([
-            'is_member' => $request->exists('is_member'),
             'in_school' => $request->exists('in_school'),
         ]);
         /** @var UserProfile $userProfile */
