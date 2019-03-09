@@ -20,6 +20,10 @@ class UserProfileRequest extends FormRequest
         if ($userProfile && \Laratrust::owns($userProfile)) {
             return true;
         }
+        //無資料時，新增資料的情況
+        if (!$userProfile) {
+            return true;
+        }
         //具有管理權限
         if (\Laratrust::can('user-profile.manage')) {
             return true;
