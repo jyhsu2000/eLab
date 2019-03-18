@@ -1,8 +1,9 @@
 <div class="card">
-    <div class="card-body text-center">
+    <div class="card-body text-center d-flex justify-content-center">
         @if($userProfile->photoUrl)
-            <img src="{{ $userProfile->photoUrl }}" class="img-thumbnail"
-                 style="max-height: 600px; max-width: 600px"/>
+            <div style="max-height: 600px; max-width: 600px">
+                <img src="{{ $userProfile->photoUrl }}" class="img-thumbnail" alt="photo">
+            </div>
         @else
             <div class="img-thumbnail d-inline-flex justify-content-center"
                  style="height: 200px; width: 200px; background-image: repeating-linear-gradient(-45deg, #dddddd 0px, #dddddd 25px, transparent 25px, transparent 50px, #dddddd 50px);">
