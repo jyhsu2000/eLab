@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -43,5 +45,21 @@ class LoginController extends Controller
         }
 
         return view('auth.login');
+    }
+
+    /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  User $user
+     * @return mixed
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        //若無成員資料
+        if (!$user->userProfile) {
+            //強制跳轉至成員資料頁面
+            return redirect()->route('my-user-profile.index');
+        }
     }
 }
