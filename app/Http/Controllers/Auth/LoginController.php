@@ -59,7 +59,7 @@ class LoginController extends Controller
         //若無成員資料
         if (!$user->userProfile) {
             //強制跳轉至成員資料頁面
-            return redirect()->route('my-user-profile.index');
+            return redirect()->route('my-user-profile.create-or-edit')->with('success', '請繼續填寫以下資料');
         }
     }
 }
