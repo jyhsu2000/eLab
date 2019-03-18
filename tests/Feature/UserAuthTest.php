@@ -20,7 +20,7 @@ class UserAuthTest extends BrowserKitTestCase
             ->type($user->email, 'email')
             ->type('secret', 'password')
             ->press('登入')
-            ->seePageIs('/');
+            ->assertResponseOk();
     }
 
     public function testRegisterSuccess()
@@ -33,7 +33,7 @@ class UserAuthTest extends BrowserKitTestCase
             ->type('secret78', 'password')
             ->type('secret78', 'password_confirmation')
             ->press('註冊')
-            ->seePageIs('/');
+            ->assertResponseOk();
     }
 
     public function testConfirmCode()
@@ -52,7 +52,7 @@ class UserAuthTest extends BrowserKitTestCase
         $url = route('confirm', $user->confirm_code);
 
         $this->visit($url)
-            ->seePageIs('/')
+            ->assertResponseOk()
             ->see($this->stringToxxxx('信箱驗證完成。'));
 
         // 確認驗整碼有被清空
@@ -61,7 +61,7 @@ class UserAuthTest extends BrowserKitTestCase
 
         // 再訪問一次，應該會顯示"驗證連結無效"
         $this->visit($url)
-            ->seePageIs('/')
+            ->assertResponseOk()
             ->see($this->stringToxxxx('驗證連結無效。'));
     }
 
@@ -78,7 +78,7 @@ class UserAuthTest extends BrowserKitTestCase
         $user->confirm_at = Carbon::now();
         $this->actingAs($user)
             ->visit(route('confirm-mail.resend'))
-            ->seePageIs('/');
+            ->assertResponseOk();
     }
 
     public function testConfirmMailRedirect()
@@ -99,6 +99,6 @@ class UserAuthTest extends BrowserKitTestCase
 
         $this->actingAs($user)
             ->visit(route('login'))
-            ->seePageIs('/');
+            ->assertResponseOk();
     }
 }
