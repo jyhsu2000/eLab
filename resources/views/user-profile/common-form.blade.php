@@ -1,5 +1,9 @@
 <div class="alert alert-warning">
-    請注意，以下項目資訊皆為公開資訊，將直接顯示於網站
+    @if($userProfile->is_member)
+        請注意，以下項目資訊皆為公開資訊，將直接顯示於網站
+    @else
+        請注意，以下項目資訊皆為公開資訊，待管理員確認為實驗室成員後，將直接顯示於網站
+    @endif
 </div>
 @if(isset($userProfile))
     <div class="row form-group">
@@ -27,7 +31,8 @@
             <div class="input-group-append">
                 <span class="input-group-text">快速填寫：</span>
                 @foreach(['教授', '碩士班', '博士班', '碩專班'] as $type)
-                    <button class="btn btn-outline-secondary" type="button" onclick="auto_fill_type('{{ $type }}')">{{ $type }}</button>
+                    <button class="btn btn-outline-secondary" type="button"
+                            onclick="auto_fill_type('{{ $type }}')">{{ $type }}</button>
                 @endforeach
             </div>
         </div>
@@ -62,7 +67,7 @@
 @section('js')
     @parent
     <script>
-        var auto_fill_type = function(type){
+        var auto_fill_type = function (type) {
             $('#type').val(type);
         }
     </script>
