@@ -1,8 +1,8 @@
 <div class="alert alert-warning">
-    @if($userProfile->is_member)
-        請注意，以下項目資訊皆為公開資訊，將直接顯示於網站
-    @else
+    @if(!$userProfile || !$userProfile->is_member)
         請注意，以下項目資訊皆為公開資訊，待管理員確認為實驗室成員後，將直接顯示於網站
+    @else
+        請注意，以下項目資訊皆為公開資訊，將直接顯示於網站
     @endif
 </div>
 @if(isset($userProfile))
