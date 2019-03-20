@@ -41,7 +41,7 @@ class MemberDataTable extends DataTable
                     /** @var Builder|ContactInfo $query */
                     /** @var User $user */
                     $user = auth()->user();
-                    if (!\Laratrust::can('user-profile.manage') && !optional($user)->userProfile) {
+                    if (!\Laratrust::can('user-profile.manage') && !optional($user)->is_member) {
                         $query->where(function ($query) {
                             /** @var Builder|ContactInfo $query */
                             $query->where('is_public', true);

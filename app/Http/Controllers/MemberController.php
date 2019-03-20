@@ -32,13 +32,14 @@ class MemberController extends Controller
         }
         $contactInfoQuery = $userProfile->contactInfos();
         $user = auth()->user();
-        if (!\Laratrust::can('user-profile.manage') && !optional($user)->userProfile) {
+        $isMember = optional($user)->is_member;
+        if (!\Laratrust::can('user-profile.manage') && !$isMember) {
             $contactInfoQuery->where('is_public', true);
         }
         $contactInfos = $contactInfoQuery->with('contactType')->get();
 
         $jobExperiences = $userProfile->jobExperiences;
-        if (!\Laratrust::can('user-profile.manage') && !optional($user)->userProfile) {
+        if (!\Laratrust::can('user-profile.manage') && !$isMember) {
             $jobExperiences = $userProfile->jobExperiences()->where('is_public', true)->get();
         }
 

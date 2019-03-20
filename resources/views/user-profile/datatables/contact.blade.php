@@ -1,6 +1,6 @@
 <ul class="list-unstyled">
     @foreach($userProfile->contactInfos as $contactInfo)
-        @if($contactInfo->is_public || Laratrust::can('user-profile.manage') || optional(auth()->user())->userProfile)
+        @if($contactInfo->is_public || Laratrust::can('user-profile.manage') || optional(auth()->user())->is_member)
             <li>
                 <i class="{{ $contactInfo->contactType->icon_class }}" aria-hidden="true"
                    title="{{ $contactInfo->contactType->name }}"></i>
